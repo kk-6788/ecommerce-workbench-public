@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# 运行时数据（本机敏感/大文件，不追踪）
+runtime/
+work/
+.env
+.env.*
+!.env.example
+private/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# 登录态/密钥
+*.token
+*.key
+secrets/
+credentials/
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+
+# 操作系统
+Thumbs.db
+.DS_Store
+
+# Shortcuts are generated for each local installation
+*.lnk

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}\n<p><a class="btn" href="/imports">导入表格资料</a></p>
+<section class="page-head">
+  <h1>经营复盘</h1>
+  <p class="muted">指标、可能因素、验证记录和模型改进提案。相关性 ≠ 原因。</p>
+</section>
+
+<section class="card"><h2>导入的订单与销售资料</h2><p>导入中心支持查看订单明细与销售汇总的原始记录；这些资料不会自动成为已核验的指标快照。</p><a class="btn" href="/imports?kind=orders">查看订单资料</a><a class="btn" href="/imports?kind=sales">查看销售资料</a></section>\n<section class="card">
+  <h2>📊 指标快照（{{ snapshots|length }}）</h2>
+  <table class="table">
+    <thead><tr><th>商品</th><th>平台</th><th>渠道</th><th>窗口</th><th>曝光</th><th>点击</th><th>订单</th><th>修订</th></tr></thead>
+    <tbody>
+    {% for s in snapshots %}
+      <tr>
+        <td class="muted">{{ s.product_id[:8] }}</td>
+        <td>{{ s.platform }}</td><td>{{ s.channel }}</td>
+        <td class="muted">{{ s.period_start[:10] }} ~ {{ s.period_end[:10] }}</td>
+        <td>{{ s.metrics.get('impressions', '—') if s.metrics.get('impressions') is not none else '—' }}</td>
+        <td>{{ s.metrics.get('clicks', '—') if s.metrics.get('clicks') is not none else '—' }}</td>
+        <td>{{ s.metrics.get('orders', '—') if s.metrics.get('orders') is not none else '—' }}</td>
+        <td>r{{ s.revision }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if not snapshots %}<p class="muted empty">暂无指标。经营数据需真实后台采集或用户导出（待 G3 验收）。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>📝 复盘（{{ reviews|length }}）</h2>
+  {% for r in reviews %}
+  <div class="review-block">
+    <div class="review-head">
+      <strong>{{ r.product_title or r.product_id[:8] }}</strong>
+      <span class="tag {{ 'tag-ok' if r.outcome == 'VALIDATED' else 'tag-warn' if r.outcome == 'MIXED' else 'tag-danger' if r.outcome == 'FAILED' else 'tag-muted' }}">{{ r.outcome }}</span>
+      <span class="muted">{{ r.created_at[:16] }}</span>
+    </div>
+    <pre class="code">{{ r.hypotheses | tojson(indent=2) }}</pre>
+    <pre class="code">{{ r.findings | tojson(indent=2) }}</pre>
+  </div>
+  {% endfor %}
+  {% if not reviews %}<p class="muted empty">暂无复盘。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>🧪 校准提案（{{ proposals|length }}）</h2>
+  {% for p in proposals %}
+  <div class="review-block">
+    <strong>state: {{ p.state }}</strong>
+    <pre class="code">{{ p.proposed_json[:200] }}</pre>
+  </div>
+  {% endfor %}
+  {% if not proposals %}<p class="muted empty">暂无校准提案。学习只生成 proposal，owner 确认后新建版本。</p>{% endif %}
+</section>
+{% endblock %}

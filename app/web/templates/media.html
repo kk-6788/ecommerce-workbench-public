@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1>图片与视频</h1>
+  <p class="muted">参考素材、生成方案、版本预览、修改与审阅状态。生成费用逐笔审批。</p>
+</section>
+
+<section class="card">
+  <h2>🖼️ 素材库（{{ assets|length }}）</h2>
+  {% if assets %}
+  <div class="asset-grid">
+    {% for a in assets %}
+    <div class="asset-item">
+      {% if a.kind == 'IMAGE' %}<img src="/api/v1/assets/{{ a.id }}/file" alt="{{ a.role }}" class="thumb">{% else %}<div class="thumb video">▶ {{ a.kind }}</div>{% endif %}
+      <div class="asset-meta">
+        <span class="tag">{{ a.role }}</span>
+        <span class="tag {{ 'tag-ok' if a.review_status == 'APPROVED' else 'tag-warn' }}">{{ a.review_status }}</span>
+        <span class="muted">{{ a.product_title or a.product_id[:8] }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}<p class="muted empty">暂无素材。参考图上传、生成方案确认后逐步积累。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>🎬 生成方案（{{ plans|length }}）</h2>
+  <table class="table">
+    <thead><tr><th>商品</th><th>动作</th><th>状态</th><th>费用上限</th><th>创建</th></tr></thead>
+    <tbody>
+    {% for p in plans %}
+      <tr>
+        <td>{{ p.product_title or p.product_id[:8] }}</td>
+        <td>{{ p.action }}</td>
+        <td><span class="tag {{ 'tag-ok' if p.state == 'READY' else 'tag-warn' if p.state in ['DRAFT','WAITING_APPROVAL'] else 'tag-muted' }}">{{ p.state }}</span></td>
+        <td>{{ p.currency }} {{ p.cost_cap_minor / 100 if p.cost_cap_minor is not none else '未设' }}</td>
+        <td class="muted">{{ p.created_at[:16] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if not plans %}<p class="muted empty">暂无生成方案。</p>{% endif %}
+</section>
+{% endblock %}

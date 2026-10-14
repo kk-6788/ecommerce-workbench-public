@@ -1,0 +1,266 @@
+{
+  "version": "1.0",
+  "date": "2026-09-17",
+  "hash": "SHA256",
+  "excluded": [
+    "manifest.json",
+    "validation-report.json"
+  ],
+  "files": [
+    {
+      "path": "00-START-HERE.md",
+      "bytes": 5164,
+      "sha256": "f1aba5f90b842f188294f0c055692b84e25c8c32caa28d99e0d9c1b42d26cf57"
+    },
+    {
+      "path": "01-产品需求与范围.md",
+      "bytes": 5825,
+      "sha256": "85b5e860a4bc31ee68c486aae3d66b458fa9ef0d9c98e48d5cd07be1f1f2cd32"
+    },
+    {
+      "path": "02-架构数据与接口.md",
+      "bytes": 14901,
+      "sha256": "8c88f9ae360439b6ffd3691bbc2ac85dc0077c2d2286f4abbe7509cc43862912"
+    },
+    {
+      "path": "03-选品与复盘规则.md",
+      "bytes": 12917,
+      "sha256": "c45ddc1259a412997ecb7daa9ad51eac4711f597f50ea4ed0e34fa54838330bf"
+    },
+    {
+      "path": "04-实施任务.md",
+      "bytes": 13042,
+      "sha256": "660f464c9239525ff59a296716795870af4accfa692e16bd9e99e3efe5f3087b"
+    },
+    {
+      "path": "05-验收与运行手册.md",
+      "bytes": 6901,
+      "sha256": "81f69a7ff026ac5fb5f13c8df8deedc6ab67bb2c483661a7e4a2a0890917e12c"
+    },
+    {
+      "path": "06-Agent接手提示词.md",
+      "bytes": 2358,
+      "sha256": "28c2b3268a38515b4981e0f4f68eed6ae70dc32ed37da3f542249818a2dfcd20"
+    },
+    {
+      "path": "07-数据与开源核验.md",
+      "bytes": 7085,
+      "sha256": "03f49fda19cc89218fcd3906688074dde150025f55b86b0559a481091086400b"
+    },
+    {
+      "path": "contracts/golden-cases.json",
+      "bytes": 2181,
+      "sha256": "27c04bc495513e53a56096f2330d3b6d33f141e3c712c3684c4475b1a23448b3"
+    },
+    {
+      "path": "contracts/implementation-status.json",
+      "bytes": 2758,
+      "sha256": "17a565389f445e133b614ec7c1fd93dd69fa337803873f0fdc0c403da66d9d91"
+    },
+    {
+      "path": "contracts/operation-plan.example.json",
+      "bytes": 1250,
+      "sha256": "f935e6a8f188fbc25f75d610fb3a450d6a4622dde2517cc6668f4644d4ae8808"
+    },
+    {
+      "path": "contracts/pm-fields.json",
+      "bytes": 12396,
+      "sha256": "8818748799ba54ab298d3b57b911cdd307242a5585e67c16e61cf32b20d36ea6"
+    },
+    {
+      "path": "contracts/schema.sql",
+      "bytes": 10915,
+      "sha256": "b3255f75b1575892ac5fab9791ab1f41955636eaccfaba331a2e6646861b3b26"
+    },
+    {
+      "path": "contracts/states.json",
+      "bytes": 2147,
+      "sha256": "bbaf2e7ef5487c9332528017e735084ab466e4e3efc766e81d49fea30dd7b59d"
+    },
+    {
+      "path": "sources/context/最终结论-传阅版-v4.2.2勘误3.txt",
+      "bytes": 11489,
+      "sha256": "e00b85c6689db3a74ed05c57715cd4540f84ea304b5f8b29a71d848bee0b7bb7"
+    },
+    {
+      "path": "sources/obsidian/一世芳华-动销与选图系列.md",
+      "bytes": 10954,
+      "sha256": "835447de4488cedd1082e33186cf47bb22761c6d29851d08b028166cf9c66d7a"
+    },
+    {
+      "path": "sources/obsidian/内容策略-三视频模型.md",
+      "bytes": 1783,
+      "sha256": "69518190171e783e470e1bdc82480bd175161400ec23489eb3cc7e900082cd89"
+    },
+    {
+      "path": "sources/obsidian/选品思路修正-三条腿框架-2026-09-13.md",
+      "bytes": 3501,
+      "sha256": "c8f1f04e4835f3cad61417409126123cc8c1f09fcb97013188ea84cc80a74b35"
+    },
+    {
+      "path": "sources/origins.json",
+      "bytes": 8929,
+      "sha256": "cfbabdf28fcf1a9a72202ebc592cf3e79e99a03f8cdc94f4f19da1e9cb0f21ef"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/CHANGELOG.md",
+      "bytes": 795,
+      "sha256": "378f8585d8cb6a450659dad5ef9513d6fa6a2aa42ef0dafa5ee77ad3b489773d"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/README.md",
+      "bytes": 2432,
+      "sha256": "c2f35af50811ce173d680a6584e5ef5c5cc09845b22f3108d2ec35bf8613d1a1"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/competition-risk.md",
+      "bytes": 1743,
+      "sha256": "b2ff428a7302ee43aee8c485e8956de9eacefa6ee8a7b9244ab5332b9d813187"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/ecommerce-selection.md",
+      "bytes": 5141,
+      "sha256": "49603d996ebd3a6d81231821046af578ae29bf7ec0a02ced623f532314c5f590"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/jtbd.md",
+      "bytes": 1462,
+      "sha256": "b7d37976cb564aee46d72b04f348c54c8c02c99c9ebc15b4228af04bad785f19"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/keyword-demand.md",
+      "bytes": 2669,
+      "sha256": "e1283eaf7a17fe488236e1b2611fd49c535210c4a913d2c44bb1f38e5d0e888f"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/metrics.md",
+      "bytes": 1838,
+      "sha256": "7145f16cf0b702cfc87575eef1ba9eaf6d04290c2481ad2afba5901aa5bf9d00"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/prd-review.md",
+      "bytes": 1636,
+      "sha256": "9d1336c66c381877cdae086a819d16f88478a56fbb305d70110d1fc0e81c18f1"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/prioritization.md",
+      "bytes": 2221,
+      "sha256": "7433e402be92b9c3f4450e0753d855601300a05cf39978067836245e1a29e430"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/problem-discovery.md",
+      "bytes": 1857,
+      "sha256": "343313c3c9a7db3e4524aa5f55e25f25cabff1ee248c67f4810029fbe0a5bc91"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/scoring-governance.md",
+      "bytes": 2726,
+      "sha256": "04eec60eb4b329894c1b46c21c1fc1437f6166a25dd0d4180981bf8a9000447d"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/supply-inventory-risk.md",
+      "bytes": 1433,
+      "sha256": "6e5dcba7c7756d4c85c804c3f249507e63613443f16669cf365fbd744dad4871"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/survival-mode.md",
+      "bytes": 3137,
+      "sha256": "3999d203469741e528cd4cef89149d3a2e4d3568e5bc0dac0f7ca4040908a0b8"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/unit-economics-ecommerce.md",
+      "bytes": 2132,
+      "sha256": "c80cb4649f1bc468331821ac92ea451bd98982312588f2bfa0a2f16f06633d88"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/validation.md",
+      "bytes": 1873,
+      "sha256": "0072258b8a891cffaaa61d80d1d6e2aee84ebadd7a6a2e2cc02e61d515e31c70"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/SKILL.md",
+      "bytes": 17655,
+      "sha256": "b482ec7992b6eb6ac2159cb4f77d685d69a7bbcc49486d68f3acf7982ccd83e7"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/decision-report.md",
+      "bytes": 1509,
+      "sha256": "24145c5ad88fe482ef44234ebcf1c69695f0159e0df4a0b4662dcd46e59f4ffd"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/ecommerce-selection-report.md",
+      "bytes": 1593,
+      "sha256": "9c0b9228f392daaaa367b2ca4b077ed620fde56323a4cdf73aad151318326b45"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/experiment-card.md",
+      "bytes": 1026,
+      "sha256": "ec1ad58b8948eee5fa6e0f1a5ff811f4768aeb617a60af368fb3fff6f3f7caaf"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/product-audit.md",
+      "bytes": 1178,
+      "sha256": "f37538c5934085d703a3aee80b8c7ffcf9e16adb8999c6630bf65bbcbd6cfc05"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/scoring-model-audit.md",
+      "bytes": 1212,
+      "sha256": "ff4c68eb7ff6a969fae97591bdc186be7e83f63ca1b1e37c95dd82eccbe08a7d"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/small-bet-test.md",
+      "bytes": 705,
+      "sha256": "e52dc1797698cffa773c55477d65eeb842dc0261034491cbf26bacd5124e5692"
+    },
+    {
+      "path": "sources/pm-v1.3-proposal.txt",
+      "bytes": 15870,
+      "sha256": "8e289a321310cbd2069e4650a5dc91a08cd87606f5828ad27e9241f64c26274d"
+    },
+    {
+      "path": "sources/reference-methods/1688素材整理-SKILL.md",
+      "bytes": 8928,
+      "sha256": "e992cb898b3e1653838b845b3d9860f3caca7971a21e6937f1a9fdaf5d7350ad"
+    },
+    {
+      "path": "sources/strategy-20260914/v4.2.2勘误3-25词评分总表.csv",
+      "bytes": 8409,
+      "sha256": "d2b8cd7ebcd21544406f9363cf76c68b15832b8241649f3ab22153b50fbb7545"
+    },
+    {
+      "path": "sources/strategy-20260914/v4.2.2勘误3-5词规则排除表.csv",
+      "bytes": 473,
+      "sha256": "89853a81bb22b4cdef07060f5759be56fcd11f830aa07e29453e7411b3c6f32a"
+    },
+    {
+      "path": "sources/strategy-20260914/v4.2.2勘误3-全词池30词总表报告.txt",
+      "bytes": 16857,
+      "sha256": "1cf876eacf20f47f532db2207f23c711f55b328af4c74fc354fc1c545f567704"
+    },
+    {
+      "path": "sources/strategy-20260914/核验包-README-v4.2.2勘误3.txt",
+      "bytes": 13477,
+      "sha256": "7aefdfeab4d2d6ac27fd389de1c80cf8829a6913560f4a1adbbf504a5ce8bc3a"
+    },
+    {
+      "path": "sources/strategy-20260914/评测-剩余13词-1688拿货价.json",
+      "bytes": 1552,
+      "sha256": "b57b3b01507d419c1463cc2a4bf854f7e8a0d736f9f518baa4fd71e9833500d1"
+    },
+    {
+      "path": "sources/strategy-20260914/评测批次1-剩余13词-淘宝侧.json",
+      "bytes": 1907,
+      "sha256": "df9ae58bc66e062ee96e16b27be5f068d3b0a32b53a1f30ec38a6b04d8a9156e"
+    },
+    {
+      "path": "sources/strategy-20260914/评测批次2-剩余13词-淘宝侧.json",
+      "bytes": 1534,
+      "sha256": "ee1ca1f43390750017d275956740a655f701b9ba8c08b911daa6fa234ceefad3"
+    },
+    {
+      "path": "tools/validate_handoff.py",
+      "bytes": 10753,
+      "sha256": "cc6e49071f6eb883dc63d6030766b53a8bc0ed1661e3c12cad7c61a17e7c1a14"
+    }
+  ]
+}

@@ -1,0 +1,1123 @@
+可以。我把它整理成一份适合直接发给 Codex 的执行任务说明，尽量做到“拿过去就能开始做”。
+
+# Codex 执行任务：PM Decision OS v1.3 自学习选品模型
+
+## 一、项目目标
+
+在现有 `PM Decision OS v1.2` 基础上，迭代出：
+
+# PM Decision OS v1.3 — Self-Learning Selection Model
+
+目标不是做一个单纯的打分器，而是构建一个：
+
+**规则筛选 + 可解释评分 + 真实结果回测 + 统计校准 + AI审计**
+
+组成的自学习选品模型。
+
+核心目标：
+
+> 在有限资金条件下，提高找到“稳定赚钱、回款快、库存风险低、可持续销售”的 SKU 的概率，同时降低错误选品的损失。
+
+不要把“销量最大”作为唯一目标。
+
+优先优化：
+
+- Contribution Margin
+- 现金回收速度
+- 库存周转
+- CAC / ROAS 健康度
+- 退款 / 退货风险
+- 持续销售能力
+- 供应链稳定性
+- 失败成本
+- 可扩张性
+
+---
+
+# 二、总体架构
+
+模型必须采用三层结构。
+
+## Layer 1：Hard Kill Filter
+
+先判断商品是否违反硬性约束。
+
+失败则直接：
+
+`KILL`
+
+不要让后续综合评分把它“救回来”。
+
+典型 Kill 条件包括：
+
+- Contribution Margin 不达标
+- MOQ 超出测试预算
+- 库存占资过高
+- 供应链不稳定
+- 合规 / IP 风险不可接受
+- 物流成本严重侵蚀利润
+- 高退货 / 高退款风险
+- 商品过于易碎或履约复杂
+- 竞争极强且没有进入切口
+- 广告成本导致经济模型不成立
+- 验证成本过高
+
+---
+
+## Layer 2：Explainable Selection Score
+
+仅对通过 Hard Kill Filter 的商品进行排序。
+
+建议初始维度包括：
+
+- Demand
+- Purchase Intent
+- Competition
+- Contribution Margin
+- CAC / Paid Traffic Viability
+- Return Risk
+- Supply Stability
+- Inventory Risk
+- Logistics Complexity
+- Validation Cost
+- Failure Cost
+- Cash Recovery Speed
+- Scalability
+
+每个变量必须有：
+
+- 定义
+- 数据来源
+- 方向
+- 归一化规则
+- 权重
+- 置信度
+- 更新频率
+- 是否为代理变量
+- 是否可能和其他变量重复计分
+
+避免过度精确。
+
+数据质量低时不要使用大量小数位。
+
+---
+
+## Layer 3：Outcome Learning
+
+商品真实上架后，记录经营结果。
+
+将：
+
+**预测结果**
+
+与：
+
+**真实结果**
+
+进行对比。
+
+重点识别：
+
+### False Positive
+
+高分商品实际失败。
+
+例如：
+
+预测 Top 10，但实际：
+
+- 亏损
+- 退货高
+- CAC 高
+- 库存积压
+- 无法补货
+
+### False Negative
+
+低分商品实际表现优秀。
+
+例如：
+
+预测排名低，但实际：
+
+- 高利润
+- 低 CAC
+- 快速周转
+- 复购 / 持续订单良好
+
+系统必须分析：
+
+> 为什么模型错了？
+
+---
+
+# 三、建议目录结构
+
+请基于现有 v1.2 项目扩展成：
+
+```text
+pm-decision-os-v1.3/
+├── SKILL.md
+├── README.md
+├── CHANGELOG.md
+│
+├── model/
+│   ├── selection_model.py
+│   ├── scoring_engine.py
+│   ├── kill_filter.py
+│   ├── confidence.py
+│   ├── outcome_label.py
+│   └── calibration.py
+│
+├── config/
+│   ├── scoring_config.json
+│   ├── kill_rules.json
+│   ├── success_definition.json
+│   └── model_config.json
+│
+├── learning/
+│   ├── outcome-tracking.md
+│   ├── model-backtesting.md
+│   ├── model-calibration.md
+│   ├── drift-detection.md
+│   └── version-governance.md
+│
+├── data/
+│   ├── candidate-schema.csv
+│   ├── outcome-schema.csv
+│   ├── prediction-history.csv
+│   ├── outcome-history.csv
+│   └── model-history.csv
+│
+├── templates/
+│   ├── selection-report.md
+│   ├── learning-report.md
+│   ├── calibration-report.md
+│   └── model-comparison-report.md
+│
+├── references/
+│   └── 保留 v1.2 现有 references
+│
+└── tests/
+    ├── test_kill_filter.py
+    ├── test_scoring_engine.py
+    ├── test_outcome_label.py
+    └── test_calibration.py
+```
+
+如果存在更合理的目录组织方式，可以调整，但必须保持模块化。
+
+---
+
+# 四、候选商品数据结构
+
+请定义标准 Candidate Schema。
+
+建议字段至少包括：
+
+```text
+candidate_id
+product_name
+category
+market
+platform
+target_user
+target_price
+supplier
+supplier_count
+moq
+lead_time_days
+unit_cost
+packaging_cost
+inbound_freight
+outbound_shipping
+platform_fee_rate
+payment_fee_rate
+estimated_ad_cost
+estimated_return_rate
+estimated_refund_rate
+storage_cost
+promotion_cost
+expected_selling_price
+keyword_demand
+purchase_intent_score
+competition_score
+review_barrier
+ad_competition
+seasonality
+trend_score
+supplier_stability
+logistics_complexity
+variant_count
+validation_cost
+failure_cost
+cash_recovery_days
+data_confidence
+model_version
+timestamp
+```
+
+允许继续扩展。
+
+---
+
+# 五、关键词需求模块
+
+关键词不能简单累加。
+
+必须加入：
+
+## Intent Clustering
+
+将：
+
+- 同义词
+- 近义词
+- 相同购买意图词
+
+归为同一个需求簇。
+
+例如：
+
+```text
+dog cooling vest
+cooling vest for dogs
+pet cooling vest
+```
+
+不能直接把三个搜索量相加作为独立需求。
+
+需要支持：
+
+- intent cluster
+- semantic deduplication
+- overlap adjustment
+- conservative demand aggregation
+
+最终输出：
+
+```text
+raw_keyword_volume
+deduplicated_demand
+purchase_intent_strength
+seasonality
+keyword_confidence
+```
+
+---
+
+# 六、单位经济模型
+
+必须以：
+
+# Contribution Margin
+
+作为主要利润指标。
+
+不要只计算：
+
+```text
+售价 - 采购成本
+```
+
+应至少考虑：
+
+```text
+Net Revenue
+- Product Cost
+- Packaging
+- Inbound Freight
+- Outbound Shipping
+- Platform Fees
+- Payment Fees
+- Ad Cost
+- Expected Return Cost
+- Refund Cost
+- Storage
+- Promotion
+- Defect Allowance
+= Contribution Margin
+```
+
+同时计算：
+
+```text
+Contribution Margin %
+Break-even CAC
+Break-even Return Rate
+Inventory Cash Exposure
+Cash Recovery Days
+```
+
+最好提供：
+
+- Conservative Scenario
+- Base Scenario
+- Upside Scenario
+
+---
+
+# 七、成功结果定义
+
+不要把成功简单定义成：
+
+```text
+销量高
+```
+
+建立统一的 Outcome Label。
+
+建议：
+
+## SCALE
+
+满足多数条件：
+
+- 有持续真实订单
+- Contribution Margin 健康
+- CAC 可接受
+- 退款 / 退货受控
+- 库存周转健康
+- 供应链稳定
+- 可继续补货
+- 放量后经济模型仍成立
+
+## KEEP
+
+表现正常，但暂不需要扩大投入。
+
+## IMPROVE
+
+需求成立，但存在可修复问题。
+
+例如：
+
+- listing 转化低
+- 广告效率差
+- 定价问题
+- 包装 / 页面问题
+
+## KILL
+
+核心假设失败。
+
+例如：
+
+- 无需求
+- 长期亏损
+- CAC 无法接受
+- 高退货
+- 库存无法消化
+- 供应不稳定
+
+实现：
+
+```python
+classify_outcome(...)
+```
+
+输出：
+
+```text
+SCALE
+KEEP
+IMPROVE
+KILL
+```
+
+---
+
+# 八、真实结果字段
+
+Outcome Schema 建议包括：
+
+```text
+candidate_id
+model_version
+test_start_date
+test_end_date
+impressions
+clicks
+ctr
+product_views
+add_to_cart
+conversion_rate
+orders
+units_sold
+revenue
+ad_spend
+cac
+roas
+gross_margin
+contribution_margin
+contribution_margin_rate
+refund_rate
+return_rate
+complaint_rate
+defect_rate
+inventory_units
+inventory_turnover
+stockout_days
+reorder_count
+cash_recovery_days
+final_outcome
+notes
+```
+
+---
+
+# 九、预测快照
+
+每次正式测试前必须保存：
+
+# Prediction Snapshot
+
+包括：
+
+```text
+candidate_id
+model_version
+kill_filter_result
+dimension_scores
+weights
+confidence
+final_score
+predicted_rank
+recommended_action
+timestamp
+```
+
+这样以后可以准确回测：
+
+> 当时模型为什么做出这个判断。
+
+不能只保存最终分数。
+
+---
+
+# 十、模型回测
+
+开发：
+
+```python
+backtest_model(...)
+```
+
+至少输出：
+
+- Top-N Success Rate
+- False Positive Rate
+- False Negative Rate
+- Rank Correlation
+- SCALE Precision
+- SCALE Recall
+
+并统计：
+
+```text
+高分失败品
+低分成功品
+```
+
+输出具体商品列表。
+
+例如：
+
+```text
+High Score Failures:
+A
+B
+C
+
+Low Score Winners:
+D
+E
+```
+
+然后进一步分析这些商品有什么共同特征。
+
+---
+
+# 十一、变量有效性分析
+
+当样本量足够后，对每个变量分析：
+
+```text
+变量 vs Outcome
+```
+
+例如：
+
+- Search Demand vs SCALE probability
+- Competition vs Contribution Margin
+- Margin vs Final Outcome
+- Return Risk vs Real Return Rate
+- MOQ vs Inventory Turn
+- CAC estimate vs Real CAC
+
+初期可以使用：
+
+- Spearman correlation
+- Pearson correlation
+- grouped success rate
+- feature importance
+
+不要求一开始使用复杂机器学习。
+
+优先：
+
+**简单、透明、可解释。**
+
+---
+
+# 十二、模型校准
+
+实现：
+
+```python
+propose_calibration(...)
+```
+
+它不能直接修改正式模型。
+
+必须输出：
+
+# Calibration Proposal
+
+例如：
+
+```text
+Current:
+Demand Weight = 25%
+
+Observed:
+Demand has weak correlation with SCALE
+High-demand products produce many false positives
+
+Proposal:
+Demand Weight 25% -> 18%
+
+Reason:
+...
+
+Confidence:
+MEDIUM
+```
+
+所有修改都必须经过：
+
+```text
+Proposal
+↓
+Backtest
+↓
+Compare old model vs new model
+↓
+Accept / Reject
+```
+
+---
+
+# 十三、模型版本管理
+
+每次正式修改：
+
+- variables
+- weights
+- thresholds
+- kill rules
+- success definition
+
+都必须生成新版本。
+
+例如：
+
+```text
+v1.3.0
+v1.3.1
+v1.3.2
+```
+
+记录：
+
+```text
+version
+date
+changes
+reason
+backtest_result
+previous_version
+```
+
+禁止偷偷修改历史模型。
+
+---
+
+# 十四、模型对比
+
+实现：
+
+```python
+compare_models(old_model, new_model)
+```
+
+输出：
+
+```text
+Top-N Success Rate
+False Positive Rate
+False Negative Rate
+SCALE Precision
+SCALE Recall
+Rank Correlation
+Average Contribution Margin
+Average Inventory Turn
+```
+
+只有新版明显改善，才建议升级。
+
+---
+
+# 十五、样本阶段策略
+
+系统必须根据数据量采用不同学习方式。
+
+## 0–10 个 SKU
+
+不要统计调权。
+
+只做：
+
+- 记录
+- 定性误判分析
+- 数据质量检查
+
+## 10–30 个 SKU
+
+开始：
+
+- High-score failure review
+- Low-score winner review
+- 变量方向检查
+- 阈值合理性检查
+
+仍然不要大幅自动调权。
+
+## 30–100 个 SKU
+
+可以进行：
+
+- 简单相关分析
+- grouped success rate
+- 基础回测
+- 灵敏度测试
+
+## 100–300 个 SKU
+
+开始：
+
+- 更稳定的统计校准
+- 权重建议
+- 阈值建议
+- 简单 Logistic Regression
+
+## 300+ SKU
+
+可以尝试：
+
+- Logistic Regression
+- Random Forest
+- Gradient Boosting
+
+但机器学习只能作为：
+
+# Challenger Model
+
+不能直接替代规则模型。
+
+---
+
+# 十六、Champion / Challenger 架构
+
+推荐：
+
+## Champion
+
+当前正式模型。
+
+例如：
+
+```text
+Rule + Weighted Score v1.3.2
+```
+
+## Challenger
+
+实验模型。
+
+例如：
+
+```text
+Logistic Regression v0.1
+```
+
+两者同时预测。
+
+比较真实结果。
+
+只有 Challenger 长期明显优于 Champion，才考虑升级。
+
+---
+
+# 十七、AI 学习报告
+
+增加模板：
+
+```text
+templates/learning-report.md
+```
+
+每一批 SKU 测试结束后输出：
+
+# Selection Model Learning Report
+
+包括：
+
+## 1. Batch Summary
+
+测试多少 SKU。
+
+## 2. Prediction Accuracy
+
+预测效果。
+
+## 3. High-Score Failures
+
+高分失败。
+
+## 4. Low-Score Winners
+
+低分成功。
+
+## 5. Variable Findings
+
+哪些变量有效。
+
+## 6. Model Blind Spots
+
+模型漏掉了什么。
+
+## 7. Threshold Problems
+
+哪些阈值有问题。
+
+## 8. Weight Problems
+
+哪些权重可能错误。
+
+## 9. Calibration Proposal
+
+建议调整什么。
+
+## 10. Next Batch
+
+下一批应该重点验证什么。
+
+---
+
+# 十八、保护机制
+
+必须加入以下保护规则。
+
+## Rule 1
+
+AI 不得根据一两个 SKU 自动修改权重。
+
+## Rule 2
+
+正式模型不得自动覆盖。
+
+## Rule 3
+
+所有变更必须有版本号。
+
+## Rule 4
+
+没有足够样本时明确输出：
+
+```text
+INSUFFICIENT_DATA
+```
+
+## Rule 5
+
+相关性不能直接当因果关系。
+
+## Rule 6
+
+模型不能仅优化销量。
+
+## Rule 7
+
+Hard Kill Filter 永远独立存在。
+
+## Rule 8
+
+机器学习输出不能绕过合规、资金、利润和风险约束。
+
+---
+
+# 十九、核心评价目标
+
+模型最终要学习预测的不是：
+
+```text
+Which product will sell the most?
+```
+
+而是：
+
+```text
+Which product is most likely to become a healthy, repeatable and capital-efficient SKU?
+```
+
+建议建立综合 Outcome Score：
+
+```text
+Outcome Score =
+Contribution Margin
++ Cash Efficiency
++ Inventory Turn
++ Acquisition Efficiency
++ Return Quality
++ Sales Persistence
+```
+
+不要直接固定最终权重。
+
+先作为配置项：
+
+```text
+success_definition.json
+```
+
+以后通过真实数据调整。
+
+---
+
+# 二十、技术要求
+
+建议：
+
+- Python 3.11+
+- pandas
+- numpy
+- scipy
+- scikit-learn
+
+不要为了复杂而增加依赖。
+
+所有核心逻辑需要：
+
+- 类型注解
+- docstring
+- 单元测试
+- 配置与代码分离
+
+不要把权重硬编码在 Python 内。
+
+所有权重和阈值放进：
+
+```text
+config/
+```
+
+---
+
+# 二十一、CLI
+
+最好增加简单 CLI。
+
+例如：
+
+```bash
+python -m model.selection_model score candidate.csv
+```
+
+输出商品评分。
+
+```bash
+python -m model.selection_model backtest
+```
+
+运行回测。
+
+```bash
+python -m model.selection_model learn
+```
+
+生成学习报告。
+
+```bash
+python -m model.selection_model compare v1.3.0 v1.3.1
+```
+
+比较模型版本。
+
+---
+
+# 二十二、验收标准
+
+完成后必须做到：
+
+## 1.
+
+输入候选商品 CSV。
+
+能够输出：
+
+- Kill Filter
+- 各维度分
+- Confidence
+- Final Score
+- Rank
+- Recommended Action
+
+## 2.
+
+输入真实结果 CSV。
+
+能够生成：
+
+- Outcome Label
+- High-score Failures
+- Low-score Winners
+- Prediction Accuracy
+- Learning Report
+
+## 3.
+
+能够生成 Calibration Proposal。
+
+## 4.
+
+Calibration Proposal 不自动覆盖正式模型。
+
+## 5.
+
+能够对旧模型和新模型进行 Backtest。
+
+## 6.
+
+能够管理模型版本。
+
+## 7.
+
+样本不足时不会假装统计结果可靠。
+
+## 8.
+
+机器学习模型不能绕过 Hard Kill Filters。
+
+---
+
+# 二十三、实施顺序
+
+不要一次完成所有高级功能。
+
+建议分四个 Milestone。
+
+## Milestone 1 — 可运行基础模型
+
+完成：
+
+- Candidate Schema
+- Hard Kill Filter
+- Scoring Engine
+- Contribution Margin
+- Confidence
+- Selection Report
+
+先确保模型可以实际使用。
+
+---
+
+## Milestone 2 — Outcome Tracking
+
+完成：
+
+- Prediction Snapshot
+- Outcome Schema
+- Outcome Label
+- Prediction History
+- Real Outcome History
+
+形成：
+
+**预测 → 实际结果**
+
+闭环。
+
+---
+
+## Milestone 3 — Backtesting & Calibration
+
+完成：
+
+- High-score Failure
+- Low-score Winner
+- 模型回测
+- 变量分析
+- Calibration Proposal
+- Model Comparison
+
+形成真正的：
+
+**学习闭环。**
+
+---
+
+## Milestone 4 — Statistical / ML Challenger
+
+样本足够后再加入：
+
+- Logistic Regression
+- Random Forest
+- Gradient Boosting
+
+保持：
+
+Champion / Challenger
+
+架构。
+
+不要过早机器学习。
+
+---
+
+# 二十四、最重要的开发原则
+
+请始终遵循：
+
+1. **先淘汰，再评分。**
+2. **真实利润优先于销量。**
+3. **真实经营数据优先于预估分数。**
+4. **低数据阶段保持简单。**
+5. **所有评分必须可解释。**
+6. **所有权重必须可追踪。**
+7. **所有调整必须可回滚。**
+8. **模型不能自动修改自己。**
+9. **错误预测必须留下记录。**
+10. **每一轮测试都必须让下一轮选品更准确。**
+
+最终模型不是为了制造一个“科学的分数”。
+
+而是为了建立：
+
+> **选品 → 测试 → 经营 → 学习 → 校准 → 再选品**
+
+这一完整闭环。
+
+你可以把上面整段直接发给 Codex。
+
+我建议同时把 **`pm-decision-os-v1.2.zip`** 一起给它，并告诉它：**“在 v1.2 上增量开发，不要重新从零搭建。”** 这样它能保留之前已经做好的 `SURVIVAL_MODE`、`AUDIT_MODE` 和电商选品模块。

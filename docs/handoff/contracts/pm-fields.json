@@ -1,0 +1,535 @@
+{
+  "version": "1.0",
+  "purpose": "Field dictionary for the planned application; not populated business data or an executable JSON Schema.",
+  "storage_mapping": {
+    "candidate": "products.id/facts_json + offers + evidence",
+    "outcome": "metric_snapshots.metrics_json + reviews.outcome(result_status) + reviews.findings_json(final_outcome)",
+    "prediction": "predictions columns + input_json/result_json"
+  },
+  "rules": [
+    "CSV blank is null. Required identifiers/scope cannot be blank; invalid rows produce row-level errors.",
+    "CSV export of object fields is JSON; import validates it, never evals it.",
+    "ISO timestamps carry timezones; monetary values use Decimal and currency.",
+    "Configured dimension values carry their scale/config version and may be null when unavailable.",
+    "Rate definitions may legitimately differ: conversion counts must match their denominator. Do not clamp negative margin rates or substitute zero for unknown.",
+    "is_synthetic is never converted to real by import; production outcomes reject synthetic rows.",
+    "Observed field provenance and scope are mandatory for decisions, even where values themselves are optional.",
+    "No monetary or scale threshold is silently invented; missing trial budget/success configuration yields WAIT."
+  ],
+  "candidate": {
+    "candidate_id": {
+      "type": "string",
+      "nullable": false
+    },
+    "product_name": {
+      "type": "string",
+      "nullable": false
+    },
+    "category": {
+      "type": "string",
+      "nullable": false
+    },
+    "market": {
+      "type": "string",
+      "nullable": false
+    },
+    "platform": {
+      "type": "string",
+      "nullable": false
+    },
+    "target_user": {
+      "type": "string",
+      "nullable": false
+    },
+    "supplier": {
+      "type": "string",
+      "nullable": true
+    },
+    "intent_cluster_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "model_version": {
+      "type": "string",
+      "nullable": true
+    },
+    "timestamp": {
+      "type": "string",
+      "nullable": true
+    },
+    "supplier_count": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "moq": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "lead_time_days": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "variant_count": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "cash_recovery_days": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "target_price": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "unit_cost": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "packaging_cost": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "inbound_freight": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "outbound_shipping": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "estimated_ad_cost": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "storage_cost": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "promotion_cost": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "expected_selling_price": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "validation_cost": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "failure_cost": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "defect_allowance": {
+      "type": "decimal_money_string",
+      "nullable": true
+    },
+    "platform_fee_rate": {
+      "type": "ratio_0_to_1_decimal_string",
+      "nullable": true
+    },
+    "payment_fee_rate": {
+      "type": "ratio_0_to_1_decimal_string",
+      "nullable": true
+    },
+    "estimated_return_rate": {
+      "type": "ratio_0_to_1_decimal_string",
+      "nullable": true
+    },
+    "estimated_refund_rate": {
+      "type": "ratio_0_to_1_decimal_string",
+      "nullable": true
+    },
+    "keyword_demand": {
+      "type": "nonnegative_decimal_string",
+      "nullable": true
+    },
+    "raw_keyword_volume": {
+      "type": "nonnegative_decimal_string",
+      "nullable": true
+    },
+    "deduplicated_demand": {
+      "type": "nonnegative_decimal_string",
+      "nullable": true
+    },
+    "purchase_intent_score": {
+      "type": "configured_dimension_value",
+      "nullable": true
+    },
+    "competition_score": {
+      "type": "configured_dimension_value",
+      "nullable": true
+    },
+    "review_barrier": {
+      "type": "configured_dimension_value",
+      "nullable": true
+    },
+    "ad_competition": {
+      "type": "configured_dimension_value",
+      "nullable": true
+    },
+    "trend_score": {
+      "type": "configured_dimension_value",
+      "nullable": true
+    },
+    "supplier_stability": {
+      "type": "configured_dimension_value",
+      "nullable": true
+    },
+    "logistics_complexity": {
+      "type": "configured_dimension_value",
+      "nullable": true
+    },
+    "seasonality": {
+      "type": "evidence_based_label",
+      "nullable": true
+    },
+    "keyword_confidence": {
+      "type": "evidence_based_label",
+      "nullable": true
+    },
+    "data_confidence": {
+      "type": "evidence_based_label",
+      "nullable": true
+    },
+    "currency": {
+      "type": "string",
+      "nullable": false,
+      "default": "CNY"
+    },
+    "field_evidence": {
+      "type": "object_by_field_name",
+      "nullable": false,
+      "value_fields": [
+        "evidence_id",
+        "source_time",
+        "scope",
+        "is_proxy",
+        "confidence",
+        "missing_reason"
+      ]
+    },
+    "is_synthetic": {
+      "type": "boolean",
+      "nullable": false,
+      "default": false
+    }
+  },
+  "outcome": {
+    "candidate_id": {
+      "type": "string",
+      "nullable": false
+    },
+    "model_version": {
+      "type": "string",
+      "nullable": false
+    },
+    "test_start_date": {
+      "type": "string",
+      "nullable": false
+    },
+    "test_end_date": {
+      "type": "string",
+      "nullable": false
+    },
+    "platform": {
+      "type": "string",
+      "nullable": false
+    },
+    "account_id": {
+      "type": "string",
+      "nullable": false
+    },
+    "channel": {
+      "type": "string",
+      "nullable": false
+    },
+    "source_timezone": {
+      "type": "string",
+      "nullable": false
+    },
+    "granularity": {
+      "type": "string",
+      "nullable": false
+    },
+    "measure_mode": {
+      "type": "string",
+      "nullable": false
+    },
+    "impressions": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "clicks": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "product_views": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "add_to_cart": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "orders": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "units_sold": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "new_customers": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "inventory_units": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "stockout_days": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "reorder_count": {
+      "type": "nonnegative_integer",
+      "nullable": true
+    },
+    "ctr": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "conversion_rate": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "gross_margin_rate": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "contribution_margin_rate": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "refund_rate": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "return_rate": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "complaint_rate": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "defect_rate": {
+      "type": "ratio_decimal_string",
+      "nullable": true
+    },
+    "revenue": {
+      "type": "signed_decimal_money_string",
+      "nullable": true
+    },
+    "net_revenue": {
+      "type": "signed_decimal_money_string",
+      "nullable": true
+    },
+    "ad_spend": {
+      "type": "signed_decimal_money_string",
+      "nullable": true
+    },
+    "cac": {
+      "type": "signed_decimal_money_string",
+      "nullable": true
+    },
+    "cost_per_order": {
+      "type": "signed_decimal_money_string",
+      "nullable": true
+    },
+    "gross_margin": {
+      "type": "signed_decimal_money_string",
+      "nullable": true
+    },
+    "contribution_margin": {
+      "type": "signed_decimal_money_string",
+      "nullable": true
+    },
+    "roas": {
+      "type": "decimal_string",
+      "nullable": true
+    },
+    "inventory_turnover": {
+      "type": "decimal_string",
+      "nullable": true
+    },
+    "cash_recovery_days": {
+      "type": "decimal_string",
+      "nullable": true
+    },
+    "result_status": {
+      "type": "enum",
+      "values": [
+        "INSUFFICIENT_DATA",
+        "VALIDATED",
+        "FAILED",
+        "MIXED"
+      ],
+      "nullable": false
+    },
+    "final_outcome": {
+      "type": "enum",
+      "values": [
+        "SCALE",
+        "KEEP",
+        "IMPROVE",
+        "KILL",
+        "WAIT"
+      ],
+      "nullable": false
+    },
+    "notes": {
+      "type": "string",
+      "nullable": true
+    },
+    "evidence_ids": {
+      "type": "array_of_ids",
+      "nullable": false
+    },
+    "currency": {
+      "type": "string",
+      "nullable": false,
+      "default": "CNY"
+    },
+    "is_synthetic": {
+      "type": "boolean",
+      "nullable": false,
+      "default": false
+    },
+    "metric_definitions": {
+      "type": "object",
+      "nullable": false,
+      "description": "Each metric identifies numerator, denominator, time scope, attribution and whether observed or estimated."
+    }
+  },
+  "prediction_snapshot": {
+    "candidate_id": {
+      "type": "string",
+      "nullable": false
+    },
+    "strategy_version": {
+      "type": "string",
+      "nullable": false
+    },
+    "engine_version": {
+      "type": "string",
+      "nullable": false
+    },
+    "outcome_definition_version": {
+      "type": "string",
+      "nullable": false
+    },
+    "input_hash": {
+      "type": "string",
+      "nullable": false
+    },
+    "timestamp": {
+      "type": "string",
+      "nullable": false
+    },
+    "kill_filter_result": {
+      "type": "enum",
+      "values": [
+        "PASS",
+        "KILL",
+        "WAIT"
+      ],
+      "nullable": false
+    },
+    "rule_hits": {
+      "type": "array",
+      "nullable": false
+    },
+    "dimension_scores": {
+      "type": "object",
+      "nullable": false
+    },
+    "weights": {
+      "type": "object",
+      "nullable": false
+    },
+    "confidence": {
+      "type": "evidence_based_label",
+      "nullable": false
+    },
+    "final_score": {
+      "type": "decimal_string",
+      "nullable": true
+    },
+    "predicted_rank": {
+      "type": "positive_integer",
+      "nullable": true
+    },
+    "recommended_action": {
+      "type": "enum",
+      "values": [
+        "TEST",
+        "WAIT",
+        "KILL"
+      ],
+      "nullable": false
+    },
+    "input_snapshot": {
+      "type": "object",
+      "nullable": false
+    },
+    "evidence_ids": {
+      "type": "array_of_ids",
+      "nullable": false
+    },
+    "missing_fields": {
+      "type": "array_of_strings",
+      "nullable": false
+    }
+  },
+  "score_variable_required_metadata": [
+    "definition",
+    "source",
+    "direction",
+    "scale",
+    "normalization",
+    "weight",
+    "confidence",
+    "refresh_frequency",
+    "is_proxy",
+    "overlap_group",
+    "rationale",
+    "status"
+  ],
+  "success_definition_required_fields": [
+    "version",
+    "window",
+    "minimum_evidence",
+    "contribution_margin_target",
+    "cash_exposure_limit",
+    "return_limits",
+    "supply_conditions",
+    "stop_conditions",
+    "approved_by"
+  ],
+  "learning_report_required_sections": [
+    "batch",
+    "prediction_accuracy",
+    "high_score_failures",
+    "low_score_winners",
+    "variable_findings",
+    "blind_spots",
+    "threshold_issues",
+    "weight_issues",
+    "possible_factors",
+    "calibration_proposal",
+    "next_batch"
+  ]
+}

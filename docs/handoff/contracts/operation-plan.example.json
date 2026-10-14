@@ -1,0 +1,34 @@
+{
+  "is_synthetic": true,
+  "not_a_real_quote": true,
+  "id": "test-plan-001",
+  "product_id": "test-product-001",
+  "action": "GENERATE_MAIN_IMAGE",
+  "provider": "fake-image-adapter",
+  "account_id": "test-owner-account",
+  "requires_content": true,
+  "requires_cost": true,
+  "payload": {
+    "sku_key": "test-blue-size-m",
+    "facts": {"color": "blue", "material": "confirmed-test-material"},
+    "input_asset_hashes": ["SYNTHETIC_HASH_REPLACE_WITH_REAL_SHA256"],
+    "prompt": "合成测试：依据已确认实物生成一张主图，不改变规格和物理属性。",
+    "output_count": 1,
+    "target_platform": "pending-verification"
+  },
+  "cost": {
+    "currency": "CNY",
+    "estimated_amount": "0.80",
+    "maximum_amount": "1.00",
+    "credit_usage": null,
+    "quote_source": "synthetic-test-fixture",
+    "billing_event": "one_generation_request",
+    "failure_billing": "unknown: execution must block until clarified",
+    "retry_needs_new_approval": true
+  },
+  "expires_at": "2026-09-18T00:00:00Z",
+  "state": "DRAFT",
+  "plan_hash": null,
+  "approvals": [],
+  "note": "Placeholder hash and unknown failure billing make this intentionally non-executable. Compute hash server-side only after exact inputs and quote are known."
+}

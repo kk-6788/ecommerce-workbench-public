@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>AI 辅助审核</h1>
+<p>影子模式：AI 给出结构化判断，人工决定如何处理；不会自动批准素材、改写事实、上架或投放。</p>
+<p>模型置信度表示答案分布的集中程度，不是实测准确率。高置信度也不能证明来源里的说法在现实中真实。</p>
+<p id="ai-policy" role="status"></p>
+<section class="card">
+<h2>准备审核方案</h2>
+<p>先在“服务连接”保存你自己的 TypeSafe Key。选中的原文将随方案展示，确认内容审批后才允许提交；请先去掉个人信息和无关商业信息。</p>
+<form id="ai-create">
+  <label>商品 <select id="ai-product" required></select></label>
+  <label>审核内容 <select name="use_case"><option value="evidence_support">卖点与证据是否一致</option><option value="keyword_intent">关键词意图与已有分类</option></select></label>
+  <label>待核对卖点 <textarea name="claim" maxlength="2000"></textarea></label>
+  <label>商品 SKU / 规格 <input name="sku" maxlength="200"></label>
+  <label>关键词（关键词判断时填写）<input name="keyword" maxlength="500"></label>
+  <fieldset><legend>本商品来源（最多 10 份）</legend><div id="ai-sources"></div></fieldset>
+  <label>本次费用上限（元；未核验报价可留 0）<input name="maximum_amount" value="0" inputmode="decimal" required></label>
+  <label>报价依据 <input name="quote_source" maxlength="1000"></label>
+  <label>失败是否收费及依据 <input name="failure_billing" value="unknown" maxlength="1000"></label>
+  <button class="btn" type="submit">建立方案，不调用模型</button>
+  <button class="btn btn-ghost" type="button" id="ai-reset">取消复查，准备新检查</button>
+</form>
+</section>
+<p id="ai-message" role="status"></p>
+<section class="card"><h2>审核与人工处理</h2><button id="ai-refresh" class="btn">刷新记录</button><div id="ai-runs"></div></section>
+<section class="card"><h2>待处理提醒</h2><p>标记已读不会解决审核缺口。</p><div id="ai-notifications"></div></section>
+<script src="/static/ai_review.js" defer></script>
+{% endblock %}

@@ -1,0 +1,145 @@
+{
+  "note": "Planning package only; none of the application tasks has started.",
+  "tasks": [
+    {
+      "task_id": "T01",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T02",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T03",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T04",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T05",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T06",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T07",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T08",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T09",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T10",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T11",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T12",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T13",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T14",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T15",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T16",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T17",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T18",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T19",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T20",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T21",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T22",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T23",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T24",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T25",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T26",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T27",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    },
+    {
+      "task_id": "T28",
+      "status": "NOT_STARTED",
+      "evidence_paths": []
+    }
+  ]
+}

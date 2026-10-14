@@ -1,0 +1,11 @@
+# 运行期
+fastapi
+uvicorn
+jinja2
+python-multipart
+pillow
+httpx
+openpyxl==3.1.5
+
+# 开发期
+pytest

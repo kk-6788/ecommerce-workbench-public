@@ -1,0 +1,135 @@
+{
+ "中型犬专用雨衣": {
+  "word": "中型犬专用雨衣",
+  "price_min": 4.0,
+  "price_max": 136.0,
+  "price_median": 35.0,
+  "n_prices": 46,
+  "top_pays": [
+   1000,
+   500,
+   10000,
+   500,
+   1000,
+   1000,
+   90,
+   6000
+  ],
+  "text_len": 5196,
+  "raw_saved": false
+ },
+ "帅气边牧衣服": {
+  "word": "帅气边牧衣服",
+  "price_min": 7.0,
+  "price_max": 260.0,
+  "price_median": 34.0,
+  "n_prices": 46,
+  "top_pays": [
+   700,
+   400,
+   100,
+   200,
+   700,
+   500,
+   300,
+   900
+  ],
+  "text_len": 4714,
+  "raw_saved": false
+ },
+ "带牵引环的狗狗衣服": {
+  "word": "带牵引环的狗狗衣服",
+  "price_min": 2.0,
+  "price_max": 121.0,
+  "price_median": 17.0,
+  "n_prices": 46,
+  "top_pays": [
+   13,
+   4000,
+   2000,
+   31,
+   200,
+   3000,
+   32,
+   6000
+  ],
+  "text_len": 4853,
+  "raw_saved": false
+ },
+ "田园犬雨衣": {
+  "word": "田园犬雨衣",
+  "price_min": 6.0,
+  "price_max": 429.0,
+  "price_median": 30.0,
+  "n_prices": 46,
+  "top_pays": [
+   400,
+   23,
+   500,
+   10,
+   10,
+   1000,
+   6000,
+   2000
+  ],
+  "text_len": 5095,
+  "raw_saved": false
+ },
+ "鹿犬衣服": {
+  "word": "鹿犬衣服",
+  "price_min": 2.0,
+  "price_max": 186.0,
+  "price_median": 10.0,
+  "n_prices": 45,
+  "top_pays": [
+   6000,
+   100,
+   500,
+   600,
+   64,
+   700,
+   100,
+   400
+  ],
+  "text_len": 4593,
+  "raw_saved": false
+ },
+ "小猫湿巾专用": {
+  "word": "小猫湿巾专用",
+  "price_min": 2.0,
+  "price_max": 29.0,
+  "price_median": 9.0,
+  "n_prices": 46,
+  "top_pays": [
+   0,
+   0,
+   200000,
+   2,
+   6000,
+   100000,
+   20000,
+   10000
+  ],
+  "text_len": 4887,
+  "raw_saved": false
+ },
+ "杀菌湿巾": {
+  "word": "杀菌湿巾",
+  "price_min": 2.0,
+  "price_max": 26.0,
+  "price_median": 6.0,
+  "n_prices": 45,
+  "top_pays": [
+   3000,
+   10000,
+   4000,
+   30000,
+   60000,
+   6000,
+   50000,
+   100000
+  ],
+  "text_len": 5339,
+  "raw_saved": false
+ }
+}

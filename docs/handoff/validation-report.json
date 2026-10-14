@@ -1,0 +1,69 @@
+{
+  "checked_at_utc": "2026-10-14T03:15:52.334703+00:00",
+  "scope": "Planning-package integrity only; no application or live-platform test executed.",
+  "checks": [
+    {
+      "name": "package_integrity",
+      "status": "PASS",
+      "detail": {
+        "hashed_files": 51
+      }
+    },
+    {
+      "name": "sources_integrity",
+      "status": "PASS",
+      "detail": {
+        "source_files": 35,
+        "pm_markdown_files": 22
+      }
+    },
+    {
+      "name": "baseline_shape",
+      "status": "PASS",
+      "detail": {
+        "scored": 25,
+        "excluded_or_observed": 5,
+        "groups": 9,
+        "zero_supply_samples": 8,
+        "scope": "row preservation only, not a complete historical rule recalculation"
+      }
+    },
+    {
+      "name": "json_and_states",
+      "status": "PASS",
+      "detail": {
+        "contract_json_files": 5,
+        "state_models": 3
+      }
+    },
+    {
+      "name": "sql_contract",
+      "status": "PASS",
+      "detail": {
+        "tables": 20,
+        "in_memory_only": true,
+        "ddl_initialization_and_selected_constraints": "PASS",
+        "scope": "not application authentication, billing, concurrency or execution tests"
+      }
+    },
+    {
+      "name": "fixture_arithmetic",
+      "status": "PASS",
+      "detail": {
+        "fixture_arithmetic_cases": 3,
+        "scope": "fixture consistency, not implemented algorithm testing"
+      }
+    },
+    {
+      "name": "document_contracts",
+      "status": "PASS",
+      "detail": {
+        "entry_documents": 8,
+        "implementation_tasks": 28,
+        "acceptance_criteria": 22,
+        "scope": "entry/contract/task references; historical Obsidian wikilinks not validated"
+      }
+    }
+  ],
+  "status": "PASS"
+}
