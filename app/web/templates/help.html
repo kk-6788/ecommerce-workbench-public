@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head tutorial-head">
+  <p class="tutorial-kicker">作业路线</p>
+  <h1>教程</h1>
+  <p class="muted">从选品证据到视频发布，按真实作业顺序完成。</p>
+</section>
+
+<aside class="tutorial-execution-boundary" role="note" aria-label="真实执行边界">
+  <strong>当前只完成准备</strong>
+  <p>真实执行连接尚不可用时，本页只提供资料整理、方案准备与人工核对路径，不代表外部生成或发布已经完成。</p>
+</aside>
+
+<nav class="tutorial-journey" aria-label="四阶段教程">
+  <a href="#selection-guide"><span>01</span><strong>选品</strong><small>找到机会，落到商品</small></a>
+  <a href="#supplier-guide"><span>02</span><strong>货源</strong><small>补齐报价并核验</small></a>
+  <a href="#product-guide"><span>03</span><strong>商品档案</strong><small>绑定事实与素材</small></a>
+  <a href="#video-guide"><span>04</span><strong>推视频</strong><small>审批、生成、审阅、发布</small></a>
+</nav>
+
+<section class="tutorial-grid" aria-label="教程概览">
+  <article class="tutorial-card tutorial-card-primary">
+    <p class="tutorial-card-number">01 · 选品</p>
+    <h2>从关键词机会走到具体商品</h2>
+    <dl class="guide-meta">
+      <div><dt>开始前</dt><dd>准备市场资料或词池</dd></div>
+      <div><dt>步骤</dt><dd>5 步</dd></div>
+      <div><dt>完成标志</dt><dd>商品已有事实、证据与预测</dd></div>
+    </dl>
+    <a href="#selection-guide">查看选品教程</a>
+  </article>
+  <article class="tutorial-card">
+    <p class="tutorial-card-number">02 · 货源</p>
+    <h2>把供应商报价变成可核验记录</h2>
+    <dl class="guide-meta">
+      <div><dt>开始前</dt><dd>先取得完整商品 ID</dd></div>
+      <div><dt>步骤</dt><dd>4 步</dd></div>
+      <div><dt>完成标志</dt><dd>规格与费用已核验</dd></div>
+    </dl>
+    <a href="#supplier-guide">查看货源教程</a>
+  </article>
+  <article class="tutorial-card">
+    <p class="tutorial-card-number">03 · 商品档案</p>
+    <h2>让执行依据集中在同一处</h2>
+    <dl class="guide-meta">
+      <div><dt>开始前</dt><dd>先选择一个具体商品</dd></div>
+      <div><dt>步骤</dt><dd>5 步</dd></div>
+      <div><dt>完成标志</dt><dd>事实、货源、素材与版本可追溯</dd></div>
+    </dl>
+    <a href="#product-guide">查看档案教程</a>
+  </article>
+  <article class="tutorial-card tutorial-card-primary">
+    <p class="tutorial-card-number">04 · 推视频</p>
+    <h2>把方案安全推进到发布确认</h2>
+    <dl class="guide-meta">
+      <div><dt>开始前</dt><dd>商品、SKU、货源与素材齐备</dd></div>
+      <div><dt>步骤</dt><dd>7 步</dd></div>
+      <div><dt>完成标志</dt><dd>内容已审阅，发布前缺口已标明</dd></div>
+    </dl>
+    <a href="#video-guide">查看推视频教程</a>
+  </article>
+</section>
+
+<section class="card preparation-card" aria-labelledby="before-start-title">
+  <div class="preparation-intro">
+    <p class="tutorial-kicker">先读这一段</p>
+    <h2 id="before-start-title">开始前准备</h2>
+    <p>账号、服务连接和表格是作业入口，不会替你完成核验、审批或外部执行。</p>
+  </div>
+  <div class="preparation-grid">
+    <article><h3>账号与服务连接</h3><p>先双击“打开电商作业平台”。尚无账号时先创建平台账号；平台账号和模型服务账号互相独立。再按需配置自己的 API Key 或连接 LibTV。保存 Key 不等于已收费，也不代表外部服务已经接通。</p><a class="btn btn-sm" href="/integrations">进入服务连接</a></article>
+    <article><h3>表格格式</h3><p>可在“表格导入”下载空白模板，或下载页面内填写好的 CSV。页面草稿只保留到刷新前，请及时下载。支持 .xlsx、CSV、TSV；旧 .xls 请另存为 .xlsx。首行使用不重复列名，公式先粘贴为值，合并单元格和多行表头先整理。</p></article>
+    <article><h3>上传、重复与冲突</h3><p>读取后选择工作表、核对字段与前 10 行预览，再确认导入。任何一行不合格时整表不写入。普通资料按文件、工作表和原始行号识别；文件修改后会视为新来源，不会覆盖或合并旧资料。订单内容冲突时整批拒绝；导入其他工作表需重新上传并选择。</p></article>
+    <article><h3>导出与数据范围</h3><p>导出为 Excel／WPS 可打开的 UTF-8 CSV，包含原始资料列，不受页面最近 200 条限制。金额单位为元；以 =、+、-、@ 等开头的文本会加保护前缀。商品、货源和选品为本机共享资料；订单、销售与导入历史只显示当前账号，不导出密码或 API Key。</p></article>
+  </div>
+  <details class="prep-reference">
+    <summary>查看五类表格的必填项与导入结果</summary>
+    <div class="table-scroll">
+      <table class="table"><thead><tr><th>资料类型</th><th>必填</th><th>填写提醒</th><th>导入结果</th></tr></thead><tbody>
+        <tr><td>商品资料</td><td>商品标题、品类</td><td>模式为“铺货”或“研发”，空白默认铺货。</td><td>商品档案，初始阶段；额外列保留为原始资料。</td></tr>
+        <tr><td>货源清单</td><td>商品 ID、供应商、SKU</td><td>先导入商品并取得完整商品 ID；拿货价、运费最多两位小数。</td><td>对应商品的货源记录，初始为未核验。</td></tr>
+        <tr><td>选品／市场</td><td>关键词、品类组</td><td>分层、评分与其他市场数据只作为原始记录。</td><td>选品货源词池，待核验；不会自动参与正式评分。</td></tr>
+        <tr><td>订单明细</td><td>平台、订单号、实付金额</td><td>同订单各行使用不同订单行号；订单号设为文本以保留前导零。</td><td>当前账号的订单资料，可在经营复盘查看。</td></tr>
+        <tr><td>销售汇总</td><td>平台、日期、销售额</td><td>日期为 YYYY-MM-DD，订单数为非负整数，可添加商品名称等列。</td><td>当前账号的销售资料，不会与订单明细自动累计。</td></tr>
+      </tbody></table>
+    </div>
+  </details>
+  <div class="boundary-note"><strong>导入边界：</strong>单个文件不超过 4 MB，每表最多 1000 条、60 列，工作簿最多 20 个工作表。导出再导入不会自动更新旧记录；订单和销售资料也不会自动生成利润结论或修改模型。</div>
+</section>
+
+<section class="tutorial-guides" aria-label="分阶段操作教程">
+  <details class="tutorial-guide" id="selection-guide" open>
+    <summary><span><small>第一阶段</small>选品</span><span class="guide-summary-note">机会 → 商品 → 预测</span></summary>
+    <div class="guide-body">
+      <div class="guide-start"><strong>开始前</strong><p>准备好市场表格、关键词或现有词池，并尽量收集售价、需求样本与成本资料。没有资料时，也可以先在选品页面查看已有机会。</p></div>
+      <ol class="guide-steps">
+        <li><div><strong>导入市场资料</strong><p>到表格导入选择“选品／市场”，核对关键词与品类组后再确认。分层、评分和其他市场列会作为原始记录保留。</p></div></li>
+        <li><div><strong>整理词池</strong><p>回到选品页面查看词池，区分待核验信息、排除项和仍需观察的机会。</p></div></li>
+        <li><div><strong>创建具体商品</strong><p>把值得继续判断的机会落到真实商品，不要停留在宽泛关键词。</p></div></li>
+        <li><div><strong>补事实与证据</strong><p>记录可核对的商品事实、售价、需求样本、预估成本、证据来源与仍缺的信息，事实和推测分开写。</p></div></li>
+        <li><div><strong>生成并阅读预测</strong><p>预测用于决定下一步是等待补资料还是准备测试，不代表商品已经盈利。</p></div></li>
+      </ol>
+      <div class="completion-box"><strong>完成标志</strong><p>已建立具体商品，关键事实有证据，缺口可见，并留下最新预测。</p></div>
+      <div class="boundary-note"><strong>常见错误：</strong>把关键词热度直接当成商品表现。关键词机会不等于SKU销量，必须继续验证具体商品、SKU 与货源。</div>
+      <div class="guide-actions"><a class="btn btn-primary" href="/selection">进入选品与货源</a><a class="btn" href="/imports">导入选品资料</a></div>
+    </div>
+  </details>
+
+  <details class="tutorial-guide" id="supplier-guide" open>
+    <summary><span><small>第二阶段</small>货源</span><span class="guide-summary-note">商品 ID → 报价 → 核验</span></summary>
+    <div class="guide-body">
+      <div class="guide-start"><strong>开始前</strong><p>先创建商品并导出商品资料，复制完整商品 ID。没有商品 ID 时，货源无法准确关联；同时准备可追溯的报价来源与来源时间。</p></div>
+      <ol class="guide-steps">
+        <li><div><strong>取得商品 ID</strong><p>在表格导入页导出商品资料，找到要关联的商品并复制完整 ID。</p></div></li>
+        <li><div><strong>填写货源清单</strong><p>每条记录填写供应商、SKU、规格、拿货价与运费；金额单位为元，最多两位小数。</p></div></li>
+        <li><div><strong>预览后导入</strong><p>检查商品 ID 与列映射，确认供应商、SKU 和金额没有错位，再写入本机资料。</p></div></li>
+        <li><div><strong>回到商品核验</strong><p>逐项核对规格、价格、运费、来源时间与供应稳定性，把状态从未核验推进到与证据相符的状态。</p></div></li>
+      </ol>
+      <div class="completion-box"><strong>完成标志</strong><p>供应商、SKU、规格、拿货价、运费、来源时间和供应稳定性都有记录，且核验状态反映真实检查结果。</p></div>
+      <div class="boundary-note"><strong>常见错误：</strong>上传成功后直接开始制作。导入不等于核验，未核验报价不能当成已确认成本。</div>
+      <div class="guide-actions"><a class="btn btn-primary" href="/imports">导入货源清单</a><a class="btn" href="/product">进入商品档案</a></div>
+    </div>
+  </details>
+
+  <details class="tutorial-guide" id="product-guide" open>
+    <summary><span><small>第三阶段</small>商品档案</span><span class="guide-summary-note">事实 → 素材 → 版本</span></summary>
+    <div class="guide-body">
+      <div class="guide-start"><strong>开始前</strong><p>从商品队列或选品页面先选择一个商品。直接进入档案页时如果没有商品 ID，请先选择商品，不会自动代你创建或填入资料。</p></div>
+      <ol class="guide-steps">
+        <li><div><strong>核对事实与证据</strong><p>检查标题、品类、策略与当前阶段等事实，给关键判断保留证据来源，不把猜测写成事实。</p></div></li>
+        <li><div><strong>核验货源与规格</strong><p>把选定供应商、SKU、拿货价、运费和商品规格对齐，确认制作内容不会与实物冲突。</p></div></li>
+        <li><div><strong>补平台链接</strong><p>记录计划使用的平台页面或来源链接，保留可回查的上下文。</p></div></li>
+        <li><div><strong>整理素材</strong><p>上传并检查主图、SKU 图、详情图和视频参考素材，确认文件属于当前商品，并记录素材审阅状态。</p></div></li>
+        <li><div><strong>绑定修订版本</strong><p>将采用的事实、规格、货源、素材与修订版本一起记录；任何关键内容变化后，重新检查后续方案。</p></div></li>
+      </ol>
+      <div class="completion-box"><strong>完成标志</strong><p>阶段、事实、证据、货源、规格、平台链接、素材审阅状态和修订版本都能在同一商品下追溯。</p></div>
+      <div class="boundary-note"><strong>常见错误：</strong>在未选商品时误以为档案为空就是新建成功，或更新规格后继续沿用旧素材与旧方案。</div>
+      <div class="guide-actions"><a class="btn btn-primary" href="/product">进入商品档案</a><a class="btn" href="/media">查看图与视频</a></div>
+    </div>
+  </details>
+
+  <details class="tutorial-guide" id="video-guide" open>
+    <summary><span><small>第四阶段</small>推视频</span><span class="guide-summary-note">方案 → 审批 → 发布确认</span></summary>
+    <div class="guide-body">
+      <div class="guide-start"><strong>开始前</strong><p>先选定商品、SKU 和已核验货源，检查事实、规格与素材齐备。教程不会自动填数据，也不会替你触发审批。</p></div>
+      <ol class="guide-steps">
+        <li><div><strong>在图与视频页建方案</strong><p>进入图与视频页，为当前商品准备口播、画面提示、分镜和素材方案。此时状态是“已保存”。</p></div></li>
+        <li><div><strong>先走内容审批</strong><p>内容审批是当前路径，用来确认讲什么、怎么呈现。方案已保存不等于内容已经批准。</p></div></li>
+        <li><div><strong>按实际费用判断下一步</strong><p>只有方案实际涉及费用且已有费用方案时，才需要费用审批，也才需要 COST。当前网页尚不能录入费用上限、投放时长、指标、停止条件，因此不能在这里完成付费投放方案或费用审批。付费投放方案和费用审批只能先准备，另行补齐后再确认。</p></div></li>
+        <li><div><strong>确认当前所需审批后再生成</strong><p>不涉及费用的方案按当前内容审批结果推进；涉及费用的方案须等待费用路径另行补齐。方案已保存不等于视频已生成。</p></div></li>
+        <li><div><strong>人工审阅成片</strong><p>生成完成只表示已有成片文件。人工检查商品一致性、规格、字幕、节奏和风险；需要调整时先修改口播、画面提示或分镜，修改后形成新版本，再重新审阅。</p></div></li>
+        <li><div><strong>准备并核对发布方案</strong><p>上架启动页可准备内容方案并查看、核对已有发布方案，但当前不能录入付费投放条件。账号、目标与仍缺的费用条件应另行补齐；发布前仍需你确认。</p></div></li>
+        <li><div><strong>保留真实发布回执</strong><p>当前平台还不能登记发布结果。实际发布后，请先在平台外保留账号、链接、时间与结果回执；待结果登记能力接入后，再按真实结果记录，失败、未知或待确认不能写成“已发布”。</p></div></li>
+      </ol>
+      <div class="completion-box"><strong>完成标志</strong><p>平台内已保存方案并完成当前可用的内容审批；平台外已保留真实生成、审阅与发布回执。只有确实涉及费用并在后续补齐费用方案时，才记录费用批准；发布结果须待登记能力接入后再按回执写入。</p></div>
+      <div class="boundary-note"><strong>常见错误：</strong>把脚本、方案或生成任务当成成片，把内容审批当作费用审批，或把上架启动页当成付费投放方案录入页。这里不声称任何外部生成、费用审批或发布已经完成。</div>
+      <div class="guide-actions"><a class="btn btn-primary" href="/media">进入图与视频</a><a class="btn" href="/launch">进入上架启动</a></div>
+    </div>
+  </details>
+</section>
+{% endblock %}

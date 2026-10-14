@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-card">
+  <h1>{{ "创建其他账号" if additional else "创建你的账号" }}</h1>
+  <p class="muted">{{ "新账号拥有平台操作权限，请仅为可信任的使用者创建。创建后你仍保持当前登录。" if additional else "在此设置本机平台账号，完成后自动登录。每位使用者另行填写自己的模型服务密钥。" }}</p>
+  <form id="register-form" class="form">
+    <label>用户名<input name="username" required maxlength="64" autocomplete="username"></label>
+    <label>密码<input id="new-password" type="password" name="password" required minlength="8" maxlength="128" autocomplete="new-password"></label>
+    <label>再次输入密码<input id="confirm-password" type="password" name="password_confirm" required minlength="8" maxlength="128" autocomplete="new-password"></label>
+    <button class="btn password-toggle" type="button" data-password-target="new-password,confirm-password" aria-pressed="false">显示密码</button>
+    <p class="muted">密码至少 8 个字符，点击“显示密码”可核对输入。</p>
+    <p id="register-status" role="status" aria-live="polite"></p>
+    <button class="btn btn-primary" type="submit">创建账号{{ "" if additional else "并进入平台" }}</button>
+  </form>
+  <a href="{{ '/integrations' if additional else '/login' }}">返回{{ "服务连接" if additional else "登录" }}</a>
+</div>
+<script src="/static/register.js"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "note": "只声明能力与环境变量名，不存密钥。真实接入后在此登记核验状态。",
+  "providers": {
+    "taobao": {
+      "capabilities": ["READ", "WRITE"],
+      "login": "user_browser",
+      "env": [],
+      "status": "UNVERIFIED",
+      "billing": "free",
+      "notes": "商品/经营只读；上架/改价写操作需具体方案审批"
+    },
+    "douyin": {
+      "capabilities": ["READ", "WRITE", "VIDEO"],
+      "login": "user_browser",
+      "env": [],
+      "status": "UNVERIFIED",
+      "billing": "free_plus_video",
+      "notes": "经营数据只读；短视频成片发布逐笔审批"
+    },
+    "supplier_1688": {
+      "capabilities": ["READ", "QUOTE"],
+      "login": "user_browser_purchase_account",
+      "env": [],
+      "status": "UNVERIFIED",
+      "billing": "free",
+      "notes": "采购账号由用户处理；报价以页面明码标价为准"
+    },
+    "image_provider": {
+      "capabilities": ["IMAGE"],
+      "login": "none",
+      "env": ["IMAGE_PROVIDER_API_KEY"],
+      "status": "UNVERIFIED",
+      "billing": "paid_per_request",
+      "notes": "每次生成先展示报价，逐笔费用审批"
+    },
+    "video_provider": {
+      "capabilities": ["VIDEO"],
+      "login": "none",
+      "env": ["VIDEO_PROVIDER_API_KEY"],
+      "status": "UNVERIFIED",
+      "billing": "paid_per_request",
+      "notes": "每次生成先展示报价，逐笔费用审批；免费层优先"
+    }
+  }
+}
