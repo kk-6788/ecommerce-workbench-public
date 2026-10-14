@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>服务连接</h1>
+<section class="card">
+  <h2>使用自己的 API Key</h2>
+  <p>每位使用者配置自己的服务。项目没有共享密钥，也不会调用开发者的账号额度。</p>
+  <p>保存只代表配置已填写，不会发起生成或验证收费请求。目前制作执行链路仍在接入中。</p>
+  <form id="provider-form" autocomplete="off">
+    <label>服务 <select id="provider-name"><option value="typesafe">TypeSafe 审核</option><option value="seedance">火山方舟 / Seedance 视频</option><option value="openai_image">OpenAI 图片</option></select></label>
+    <label>模型或推理接入点 ID <input id="provider-model" value="jev-latest" required maxlength="200"></label>
+    <label>API Key <input id="provider-key" type="password" autocomplete="new-password" required maxlength="8192"></label>
+    <button class="btn" type="submit">保存我的配置</button>
+    <button class="btn btn-ghost" type="button" id="provider-delete">删除所选服务的密钥</button>
+  </form>
+  <p id="provider-message" role="status"></p>
+  <ul id="provider-list"></ul>
+  <p>LibTV 请选择下方账号授权，不需要把网页登录凭据填入 API Key。火山方舟的 Key 与 LibTV 账号不是同一项配置。</p>
+</section>
+<section class="card">
+  <h2>LibTV / Seedance</h2>
+  <p>沿用你的 LibTV 账号。点击连接后，在 LibTV 官方页面登录并授权，再回到这里。</p>
+  <p>平台账号与 LibTV 账号分别登录。首次使用可在登录页创建平台账号。<a href="/register">创建其他平台账号</a>。</p>
+  <p id="connection-status" role="status">正在读取连接状态…</p>
+  <button class="btn" id="libtv-connect">连接 LibTV</button>
+  <button class="btn" id="libtv-check">检查连接</button>
+  <button class="btn" id="libtv-projects">查看我的项目</button>
+  <button class="btn" id="libtv-models">查询 Seedance 模型</button>
+  <button class="btn btn-ghost" id="libtv-disconnect">断开连接</button>
+  <p>当前提供只读查询，不会生成图片、视频或产生制作费用。制作、费用审批与结果回填仍在接入中。</p>
+  <p>授权凭据由 Windows 加密保存在本机私有目录，不进入代码仓库或业务备份。换电脑或授权过期后重新连接。</p>
+  <div id="libtv-message" role="status"></div>
+  <pre id="libtv-result" style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:36rem;overflow:auto"></pre>
+</section>
+<script src="/static/integrations.js" defer></script>
+{% endblock %}

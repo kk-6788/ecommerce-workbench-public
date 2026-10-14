@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}\n<p><a class="btn" href="/imports">导入表格资料</a></p>
+<section class="page-head">
+  <h1>选品与货源</h1>
+  <p class="muted">30 词基线词池 · 分层结果 · 排除/观察原因。</p>
+</section>
+
+<section class="card">
+  <h2>🔍 词池（{{ opportunities|length }}）</h2>
+  <table class="table table-hover">
+    <thead><tr>
+      <th>关键词</th><th>品类组</th><th>记录分层</th><th>当前判定</th><th>来源</th>
+    </tr></thead>
+    <tbody>
+    {% for o in opportunities %}
+      <tr>
+        <td>{{ o.keyword }}</td>
+        <td>{{ o.category_group }}</td>
+        <td>{{ o.recorded_layer }}</td>
+        <td><span class="tag {{ 'tag-ok' if o.disposition in ['T1','T2','T2观察型','T3'] else 'tag-warn' if o.disposition in ['T1候选','T2观察型','T3候选','清洁类候选'] else 'tag-muted' }}">{{ o.disposition }}</span></td>
+        <td class="muted">{{ o.source_hash[:8] }}:{{ o.source_row }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>🛒 商品（{{ products|length }}）</h2>
+  <table class="table">
+    <thead><tr><th>标题</th><th>品类</th><th>阶段</th><th></th></tr></thead>
+    <tbody>
+    {% for p in products %}
+      <tr>
+        <td>{{ p.title }}</td><td>{{ p.category }}</td>
+        <td>{{ p.stage }}</td>
+        <td><a class="btn btn-sm" href="/product?id={{ p.id }}">档案</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

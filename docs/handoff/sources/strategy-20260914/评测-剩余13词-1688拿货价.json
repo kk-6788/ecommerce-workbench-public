@@ -1,0 +1,107 @@
+{
+ "中型犬专用雨衣": {
+  "supply_min": 18.5,
+  "supply_median": 19.0,
+  "n_supply": 5,
+  "sales": [
+   17180,
+   0,
+   16784
+  ]
+ },
+ "帅气边牧衣服": {
+  "supply_min": 14.0,
+  "supply_median": 44.65,
+  "n_supply": 3,
+  "sales": [
+   57
+  ]
+ },
+ "带牵引环的狗狗衣服": {
+  "supply_min": 10.8,
+  "supply_median": 12.8,
+  "n_supply": 7,
+  "sales": [
+   20,
+   195,
+   252
+  ]
+ },
+ "田园犬雨衣": {
+  "supply_min": 4.75,
+  "supply_median": 11.78,
+  "n_supply": 2,
+  "sales": []
+ },
+ "鹿犬衣服": {
+  "supply_min": 6.5,
+  "supply_median": 6.5,
+  "n_supply": 3,
+  "sales": [
+   3
+  ]
+ },
+ "小猫湿巾专用": {
+  "supply_min": 25.1,
+  "supply_median": 25.1,
+  "n_supply": 2,
+  "sales": []
+ },
+ "杀菌湿巾": {
+  "supply_min": 3.49,
+  "supply_median": 9.0,
+  "n_supply": 4,
+  "sales": [
+   1799
+  ]
+ },
+ "除臭宠物免洗手套": {
+  "supply_min": null,
+  "supply_median": null,
+  "n_supply": 0,
+  "sales": []
+ },
+ "土狗专用脖圈": {
+  "supply_min": 6.0,
+  "supply_median": 12.0,
+  "n_supply": 3,
+  "sales": [
+   1130
+  ]
+ },
+ "多功能牵引绳": {
+  "supply_min": 2.7,
+  "supply_median": 10.45,
+  "n_supply": 16,
+  "sales": [
+   1,
+   150,
+   39
+  ]
+ },
+ "大型犬狗狗胸背带": {
+  "supply_min": 2.85,
+  "supply_median": 2.85,
+  "n_supply": 1,
+  "sales": [
+   20662
+  ]
+ },
+ "狗套背心式": {
+  "supply_min": 3.33,
+  "supply_median": 8.6,
+  "n_supply": 7,
+  "sales": [
+   8930,
+   202
+  ]
+ },
+ "泰迪用品大全": {
+  "supply_min": 9.8,
+  "supply_median": 19.56,
+  "n_supply": 4,
+  "sales": [
+   98
+  ]
+ }
+}

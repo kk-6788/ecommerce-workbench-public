@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title or "电商作业平台" }} · 选品助手</title>
+  <link rel="icon" type="image/png" href="/static/brand-icon.png">
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="/static/workbench.css">
+</head>
+<body class="{{ 'workspace' if nav is defined else 'auth-page' }}">
+<a class="skip-link" href="#main-content">跳到页面内容</a>
+{% if nav is defined %}
+<header class="topbar">
+  <div class="brand"><img class="brand-icon" src="/static/brand-icon.png" alt="" width="42" height="42"><span>电商作业平台<small>选品 · 制作 · 经营</small></span></div>
+  <nav class="nav" aria-label="工作台导航">
+    <a href="/" class="{{ 'active' if nav.active == '/' else '' }}">今日工作</a>
+    <a href="/selection" class="{{ 'active' if nav.active == '/selection' else '' }}">选品货源</a>
+    <a href="/product" class="{{ 'active' if nav.active == '/product' else '' }}">商品档案</a>
+    <a href="/media" class="{{ 'active' if nav.active == '/media' else '' }}">图与视频</a>
+    <a href="/launch" class="{{ 'active' if nav.active == '/launch' else '' }}">上架启动</a>
+    <a href="/review" class="{{ 'active' if nav.active == '/review' else '' }}">经营复盘</a>
+    <a href="/imports" class="{{ 'active' if nav.active == '/imports' else '' }}">表格导入</a>
+    <a href="/integrations" class="{{ 'active' if nav.active == '/integrations' else '' }}">服务连接</a>
+    <a href="/ai-review" class="{{ 'active' if nav.active == '/ai-review' else '' }}">AI 辅助审核</a>
+    <a href="/help" class="{{ 'active' if nav.active == '/help' else '' }}">使用教程</a>
+  </nav>
+  <div class="top-actions">
+    <span class="badge badge-warn" title="待审批方案">{{ pending_approvals|length }} 待审批</span>
+    <span class="badge" title="运行中任务">{{ waiting_jobs }} 任务</span>
+    <form method="post" action="/api/v1/auth/logout" class="inline">
+      <button class="btn btn-ghost btn-sm" type="submit">退出</button>
+    </form>
+  </div>
+</header>
+{% endif %}
+
+<main class="container" id="main-content" tabindex="-1">
+  {% if nav is defined %}<div class="workspace-context"><span>我的工作台 <span aria-hidden="true">/</span> {{ page_title }}</span><span class="local-label">本机工作区</span></div>{% endif %}
+  {% block content %}{% endblock %}
+  {% if nav is defined and nav.active in ['/', '/selection', '/product', '/media', '/launch', '/review'] %}{% include "operations.html" %}{% endif %}
+</main>
+
+<script src="/static/app.js"></script>
+<script src="/static/workbench.js"></script>
+</body>
+</html>

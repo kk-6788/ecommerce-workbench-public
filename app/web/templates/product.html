@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1>商品档案</h1>
+  <p class="muted">来源证据、规格、货源、模型版本、图片和视频版本、平台链接、操作时间线。</p>
+</section>
+
+{% if product %}
+<section class="card">
+  <h2>📄 {{ product.title }}</h2>
+  <div class="meta-grid">
+    <div><span class="muted">品类</span><br>{{ product.category }}</div>
+    <div><span class="muted">模式</span><br>{{ '铺货' if product.strategy_mode == 'PUHUO' else '研发' }}</div>
+    <div><span class="muted">阶段</span><br><span class="tag tag-info">{{ product.stage }}</span></div>
+    <div><span class="muted">revision</span><br>{{ product.revision }}</div>
+    <div><span class="muted">创建</span><br class="muted">{{ product.created_at[:16] }}</div>
+  </div>
+  <h3>事实</h3>
+  <pre class="code">{{ product.facts|tojson(indent=2) }}</pre>
+</section>
+
+<section class="card">
+  <h2>📦 货源 / 规格（{{ product.offers|length }}）</h2>
+  {% if product.offers %}
+  <table class="table">
+    <thead><tr><th>供应商</th><th>SKU</th><th>规格</th><th>拿货价(分)</th><th>运费(分)</th><th>核验</th></tr></thead>
+    <tbody>
+    {% for o in product.offers %}
+      <tr>
+        <td>{{ o.supplier }}</td><td>{{ o.sku_key }}</td>
+        <td><pre class="code inline">{{ o.specification | tojson }}</pre></td>
+        <td>{{ o.procurement_minor }}</td><td>{{ o.freight_minor }}</td>
+        <td><span class="tag {{ 'tag-ok' if o.verification_status == 'VERIFIED' else 'tag-warn' }}">{{ o.verification_status }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted empty">暂无货源记录。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>🧾 证据（{{ product.evidence|length }}）</h2>
+  {% if product.evidence %}
+  <table class="table">
+    <thead><tr><th>来源</th><th>类型</th><th>采集模式</th><th>时间</th><th>内容</th></tr></thead>
+    <tbody>
+    {% for e in product.evidence %}
+      <tr>
+        <td class="muted">{{ e.source_key }}</td>
+        <td><span class="tag">{{ e.evidence_kind }}</span></td>
+        <td>{{ e.collection_mode }}</td>
+        <td class="muted">{{ (e.observed_at or e.collected_at)[:16] }}</td>
+        <td><pre class="code inline">{{ e.content_json[:80] }}</pre></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted empty">暂无证据。证据缺失 ≠ 0 也不等于通过。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>🖼️ 素材（{{ product.assets|length }}）</h2>
+  {% if product.assets %}
+  <div class="asset-grid">
+    {% for a in product.assets %}
+    <div class="asset-item">
+      {% if a.kind == 'IMAGE' %}<img src="/api/v1/assets/{{ a.id }}/file" alt="{{ a.role }}" class="thumb">{% else %}<div class="thumb video">▶ {{ a.kind }}</div>{% endif %}
+      <div class="asset-meta">
+        <span class="tag">{{ a.role }}</span>
+        <span class="tag {{ 'tag-ok' if a.review_status == 'APPROVED' else 'tag-warn' if a.review_status == 'PENDING' else 'tag-danger' }}">{{ a.review_status }}</span>
+        <span class="muted">{{ a.mime_type }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}<p class="muted empty">暂无素材。生成费用逐笔审批后才生成。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>🔮 预测（{{ product.predictions|length }}）</h2>
+  {% if product.predictions %}
+  <table class="table">
+    <thead><tr><th>决策</th><th>结果</th><th>创建</th></tr></thead>
+    <tbody>
+    {% for p in product.predictions %}
+      <tr><td>{{ p.decision }}</td><td><pre class="code inline">{{ p.result_json[:120] }}</pre></td>
+          <td class="muted">{{ p.created_at[:16] }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted empty">暂无预测快照（预测不可变，未来版本不覆盖旧预测）。</p>{% endif %}
+</section>
+
+{% else %}
+<section class="card">
+  <h2>选择商品</h2>
+  <table class="table">
+    <thead><tr><th>标题</th><th>品类</th><th>阶段</th><th></th></tr></thead>
+    <tbody>
+    {% for p in products %}
+      <tr><td>{{ p.title }}</td><td>{{ p.category }}</td><td>{{ p.stage }}</td>
+          <td><a class="btn btn-sm" href="/product?id={{ p.id }}">打开</a></td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

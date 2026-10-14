@@ -1,0 +1,96 @@
+{
+  "is_synthetic": true,
+  "note": "Algorithm test inputs, not observed shop outcomes. Tier cases assume all other required evidence gates pass.",
+  "margin_cases": [
+    {
+      "price": "34",
+      "procurement": "10.45",
+      "expected": "14.46"
+    },
+    {
+      "price": "20",
+      "procurement": "12.8",
+      "expected": "0.00"
+    },
+    {
+      "price": "20",
+      "procurement": null,
+      "expected": null
+    }
+  ],
+  "tier_boundaries": [
+    {
+      "name": "T1 boundary",
+      "margin": "8",
+      "price": "32",
+      "top_pays": 2000,
+      "supply_n": 3,
+      "taobao_n": 1,
+      "expected": "T1"
+    },
+    {
+      "name": "T1 too few suppliers",
+      "margin": "8",
+      "price": "32",
+      "top_pays": 2000,
+      "supply_n": 2,
+      "taobao_n": 1,
+      "expected": "T1_CANDIDATE"
+    },
+    {
+      "name": "T2 boundary",
+      "margin": "3",
+      "procurement_ratio": "0.5",
+      "top_pays": 1000,
+      "supply_n": 3,
+      "taobao_n": 1,
+      "expected": "T2"
+    },
+    {
+      "name": "T2 observe boundary",
+      "margin": "2.5",
+      "margin_plus10": "3.5",
+      "procurement_ratio": "0.3",
+      "top_pays": 1000,
+      "supply_n": 3,
+      "taobao_n": 1,
+      "expected": "T2_OBSERVE"
+    },
+    {
+      "name": "T3 boundary",
+      "margin": "0",
+      "top_pays": 300,
+      "supply_n": 3,
+      "taobao_n": 1,
+      "expected": "T3"
+    },
+    {
+      "name": "zero demand samples",
+      "taobao_n": 0,
+      "expected_formal_execution": false
+    },
+    {
+      "name": "missing max and median/min at 2",
+      "supply_max": null,
+      "supply_median": "20",
+      "supply_min": "10",
+      "expected_span": "UNKNOWN"
+    },
+    {
+      "name": "strict anomaly inequality",
+      "span_ratio": "2",
+      "peer_deviation": "0.5",
+      "expected_anomaly": false
+    }
+  ],
+  "historical_observation_keyword": "狗狗四脚衣",
+  "required_adversarial_cases": [
+    "row_order_independence",
+    "unknown_cost_blocks_execution",
+    "double_submit_one_attempt",
+    "restart_unknown_no_resubmit",
+    "changed_asset_invalidates_approval",
+    "zero_denominator_is_null",
+    "unobserved_rejection_is_not_false_negative"
+  ]
+}

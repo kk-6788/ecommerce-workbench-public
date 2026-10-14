@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1>今日工作</h1>
+  <p class="muted">每个商品当前阶段、阻塞原因、下一步、待审批金额、证据更新时间。</p>
+</section>
+
+{% if pending_approvals %}
+<section class="card">
+  <h2>⏳ 待审批（费用逐笔确认）</h2>
+  <table class="table">
+    <thead><tr><th>动作</th><th>商品</th><th>状态</th><th>费用上限</th><th>创建时间</th><th></th></tr></thead>
+    <tbody>
+    {% for p in pending_approvals %}
+      <tr>
+        <td>{{ p.action }}</td>
+        <td>{{ p.product_id[:8] }}</td>
+        <td><span class="tag tag-warn">{{ p.state }}</span></td>
+        <td>{{ p.currency }} {{ p.cost_cap_minor / 100 if p.cost_cap_minor is not none else '未设' }}</td>
+        <td class="muted">{{ p.created_at[:16] }}</td>
+        <td><a class="btn btn-sm" href="/launch">查看</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+
+<section class="card">
+  <h2>📦 商品队列</h2>
+  {% if products %}
+  <table class="table">
+    <thead><tr><th>标题</th><th>品类</th><th>模式</th><th>阶段</th><th>更新</th><th></th></tr></thead>
+    <tbody>
+    {% for p in products %}
+      <tr>
+        <td>{{ p.title }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ '铺货' if p.strategy_mode == 'PUHUO' else '研发' }}</td>
+        <td><span class="tag tag-info">{{ p.stage }}</span></td>
+        <td class="muted">{{ p.updated_at[:16] }}</td>
+        <td><a class="btn btn-sm" href="/product?id={{ p.id }}">打开档案</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted empty">还没有商品档案。先去 <a href="/selection">选品与货源</a> 导入词池、创建商品。</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>🗓️ 批次</h2>
+  {% if batches %}
+  <table class="table">
+    <thead><tr><th>名称</th><th>周起始</th><th>目标</th></tr></thead>
+    <tbody>
+    {% for b in batches %}
+      <tr><td>{{ b.name }}</td><td>{{ b.week_start }}</td>
+          <td>{{ b.target_min }}–{{ b.target_max }} 件</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted empty">暂无批次。</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{
+  "contract_version": "1.0",
+  "note": "Transitions require the guards in 02, not just membership in this list.",
+  "job": {
+    "initial": "QUEUED",
+    "transitions": {
+      "QUEUED": ["RUNNING", "WAITING_INPUT", "WAITING_APPROVAL", "CANCELLED"],
+      "WAITING_INPUT": ["QUEUED", "CANCELLED"],
+      "WAITING_APPROVAL": ["QUEUED", "CANCELLED"],
+      "RUNNING": ["SUCCEEDED", "FAILED", "WAITING_INPUT", "WAITING_APPROVAL", "RECONCILING", "CANCELLED", "QUEUED"],
+      "RECONCILING": ["SUCCEEDED", "FAILED", "WAITING_INPUT"],
+      "SUCCEEDED": [], "FAILED": [], "CANCELLED": []
+    },
+    "guards": ["RUNNING to QUEUED only for pure computation/free reads without unresolved external attempt", "Cancellation of a submitted action is a request, not proof of remote cancellation"]
+  },
+  "plan": {
+    "initial": "DRAFT",
+    "transitions": {
+      "DRAFT": ["WAITING_APPROVAL", "READY", "REVOKED", "EXPIRED"],
+      "WAITING_APPROVAL": ["READY", "REJECTED", "REVOKED", "EXPIRED"],
+      "READY": ["RESERVED", "REVOKED", "EXPIRED"],
+      "RESERVED": ["SUBMITTED", "UNKNOWN", "FAILED", "CANCELLED"],
+      "SUBMITTED": ["SUCCEEDED", "FAILED", "UNKNOWN"],
+      "UNKNOWN": ["SUCCEEDED", "FAILED"],
+      "SUCCEEDED": [], "FAILED": [], "CANCELLED": [], "REJECTED": [], "REVOKED": [], "EXPIRED": []
+    },
+    "guards": ["READY requires every required approval valid for exact hash", "RESERVED before external request in same transaction as PREPARED attempt", "UNKNOWN never returns to READY", "FAILED requiring another charge creates new plan"]
+  },
+  "attempt": {
+    "initial": "PREPARED",
+    "transitions": {
+      "PREPARED": ["SUBMITTED", "UNKNOWN", "FAILED", "CANCELLED"],
+      "SUBMITTED": ["SUCCEEDED", "FAILED", "UNKNOWN"],
+      "UNKNOWN": ["SUCCEEDED", "FAILED"],
+      "SUCCEEDED": [], "FAILED": [], "CANCELLED": []
+    }
+  },
+  "product_stages": ["DISCOVERY", "EVIDENCE", "DECISION", "MATERIALS", "READY_TO_LAUNCH", "LIVE", "OBSERVING", "REVIEWED", "ON_HOLD"],
+  "outcomes": ["INSUFFICIENT_DATA", "VALIDATED", "FAILED", "MIXED"],
+  "capabilities": ["UNVERIFIED", "NEEDS_LOGIN", "VERIFIED_READ", "VERIFIED_WRITE", "UNAVAILABLE"]
+}

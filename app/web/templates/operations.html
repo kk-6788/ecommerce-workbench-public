@@ -1,0 +1,91 @@
+<section class="card" id="operations" data-page="{{ nav.active }}">
+  <h2>办理作业</h2>
+  <p id="operation-result" role="status" aria-live="polite"></p>
+  <label>当前商品 <select id="active-product"><option value="">请选择商品</option></select></label>
+  {% if nav.active in ['/', '/selection'] %}
+  <form id="create-product" class="form">
+    <h3>新建商品</h3>
+    <label>商品名称<input name="title" required maxlength="200"></label>
+    <label>品类<input name="category" required></label>
+    <label>数据用途<select name="is_synthetic"><option value="false">真实商品资料</option><option value="true">练习用模拟资料</option></select></label>
+    <button class="btn btn-primary">保存商品</button>
+  </form>
+  <form id="create-batch" class="form">
+    <h3>本周批次</h3><label>名称<input name="name" required></label><label>起始日期<input name="week_start" type="date" required></label>
+    <button class="btn">创建批次</button>
+  </form>
+  <label>分配批次<select id="active-batch"></select></label><button type="button" class="btn" id="assign-batch">将当前商品加入批次</button>
+  <div id="batch-progress"></div>
+  {% endif %}
+  {% if nav.active in ['/selection','/product'] %}
+  <form id="save-facts" class="form">
+    <h3>选品事实</h3>
+    <label>关键词<input name="keyword"></label>
+    <label>售价（元）<input name="median_price" type="number" min="0" step="0.01"></label>
+    <label>保守拿货价（元）<input name="conservative_procurement" type="number" min="0" step="0.01"></label>
+    <label>最低拿货价（元）<input name="lowest_procurement" type="number" min="0" step="0.01"></label>
+    <label>需求样本数<input name="taobao_samples" type="number" min="0" step="1"></label>
+    <label>头部付款数<input name="top_payments" type="number" min="0" step="1"></label>
+    <label>有效货源样本数<input name="supply_samples" type="number" min="0" step="1"></label>
+    <label>成本来源<select name="procurement_source"><option value="UNKNOWN">未知</option><option value="FACT">直接核验事实</option><option value="PROXY">代理指标</option><option value="ESTIMATE">估算</option></select></label>
+    <label>货源仍待核验<select name="needs_supply_verify"><option value="true">是</option><option value="false">否，已核验</option></select></label>
+    <button class="btn">保存事实</button><button class="btn" id="predict" type="button">生成预测</button>
+  </form>
+  <form id="add-evidence" class="form"><h3>登记来源证据</h3>
+    <label>来源名称<input name="source_key" required></label><label>来源链接<input name="source_url" type="url"></label>
+    <label>观察时间<input name="observed_at" type="datetime-local" required></label>
+    <label>证据说明<textarea name="note" required></textarea></label>
+    <button class="btn">保存证据</button>
+  </form>
+  <form id="add-offer" class="form"><h3>登记货源报价</h3>
+    <label>供应商<input name="supplier" required></label><label>SKU<input name="sku_key" required></label>
+    <label>规格说明<input name="specification" required></label>
+    <label>拿货价（元）<input name="price" type="number" min="0" step="0.01" required></label>
+    <label>有效样本数<input name="sample_count" type="number" min="0" step="1"></label>
+    <label>核验状态<select name="verification_status"><option value="UNVERIFIED">未核验</option><option value="VERIFIED">已核验</option></select></label>
+    <label>关联证据<select name="evidence_id" id="offer-evidence"></select></label>
+    <button class="btn">保存报价</button>
+  </form>
+  {% endif %}
+  {% if nav.active == '/media' %}
+  <form id="upload-asset" class="form"><h3>上传素材</h3>
+    <label>文件<input name="file" type="file" required></label>
+    <label>类型<select name="kind"><option>IMAGE</option><option>VIDEO</option></select></label>
+    <label>用途<select name="role"><option value="MAIN">主图</option><option value="SKU">SKU图</option><option value="DETAIL">详情图</option><option value="REFERENCE">参考</option><option value="OUTPUT">视频成品</option></select></label>
+    <label>对应SKU<input name="sku_key"></label><button class="btn">上传</button>
+  </form>
+  <div id="asset-actions"></div>
+  {% endif %}
+  {% if nav.active in ['/media','/launch'] %}
+  <form id="create-plan" class="form"><h3>准备方案</h3>
+    <label>动作<select name="action"><option value="IMAGE">生成图片</option><option value="VIDEO">生成视频</option><option value="LISTING_UPLOAD">商品上架</option><option value="VIDEO_PUBLISH">发布视频</option></select></label>
+    <label>提供方 / 平台<input name="provider" required placeholder="尚未接入的提供方会阻止执行"></label>
+    <label>目标账号<input name="account_id"></label><label>标题<input name="title" required></label>
+    <label>SKU<input name="sku_key"></label><label>售价（元）<input name="price" type="number" min="0" step="0.01"></label><label>库存<input name="stock" type="number" min="0" step="1"></label>
+    <label>图片要求 / 视频旁白<textarea name="prompt"></textarea></label>
+    <label>视频镜头（每行一镜）<textarea name="shots"></textarea></label>
+    <p class="muted">引用当前商品已审素材。费用必须有提供方可信报价；未接入服务不能执行。</p>
+    <button class="btn">保存待审批方案</button>
+  </form>
+  <div id="plan-actions"></div>
+  {% endif %}
+  {% if nav.active == '/review' %}
+  <form id="save-metric" class="form"><h3>记录经营数据</h3>
+    <label>平台<input name="platform" required></label><label>账号<input name="account_id" required></label>
+    <label>来源标识<input name="source_key" required></label>
+    <label>开始时间<input name="period_start" type="datetime-local" required></label><label>结束时间<input name="period_end" type="datetime-local" required></label>
+    <label>渠道<select name="channel"><option value="organic">自然流量</option><option value="paid">付费流量</option><option value="total">总量</option></select></label>
+    <label>曝光<input name="impressions" type="number" min="0" step="1"></label><label>点击<input name="clicks" type="number" min="0" step="1"></label><label>订单<input name="orders" type="number" min="0" step="1"></label>
+    <button class="btn">保存指标</button>
+  </form>
+  <form id="create-review" class="form"><h3>记录复盘</h3>
+    <label>预测<select name="prediction_id" id="review-prediction" required></select></label>
+    <label>结果<select name="outcome"><option>INSUFFICIENT_DATA</option><option>VALIDATED</option><option>FAILED</option><option>MIXED</option></select></label>
+    <label>可能因素<textarea name="statement" required></textarea></label><label>证据说明<textarea name="support" required></textarea></label>
+    <label>尚不清楚<textarea name="unknowns" required></textarea></label><label>下一次验证动作<textarea name="action" required></textarea></label>
+    <label>指标快照标识（逗号分隔）<input name="metric_ids"></label>
+    <button class="btn">保存复盘</button>
+  </form>
+  {% endif %}
+</section>
+<script src="/static/workflow.js" defer></script>

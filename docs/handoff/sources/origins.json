@@ -1,0 +1,181 @@
+{
+  "copied_at": "2026-09-17",
+  "archive_sha256": "5380d3a218b2b7caaec9536b16dd25f7272f669d59b19da32ca05eed53e0174e",
+  "sources": [
+    {
+      "path": "sources/strategy-20260914/v4.2.2勘误3-25词评分总表.csv",
+      "origin": "local:sources/strategy-20260914/v4.2.2勘误3-25词评分总表.csv",
+      "sha256": "d2b8cd7ebcd21544406f9363cf76c68b15832b8241649f3ab22153b50fbb7545"
+    },
+    {
+      "path": "sources/strategy-20260914/v4.2.2勘误3-5词规则排除表.csv",
+      "origin": "local:sources/strategy-20260914/v4.2.2勘误3-5词规则排除表.csv",
+      "sha256": "89853a81bb22b4cdef07060f5759be56fcd11f830aa07e29453e7411b3c6f32a"
+    },
+    {
+      "path": "sources/strategy-20260914/v4.2.2勘误3-全词池30词总表报告.txt",
+      "origin": "local:sources/strategy-20260914/v4.2.2勘误3-全词池30词总表报告.txt",
+      "sha256": "1cf876eacf20f47f532db2207f23c711f55b328af4c74fc354fc1c545f567704"
+    },
+    {
+      "path": "sources/strategy-20260914/核验包-README-v4.2.2勘误3.txt",
+      "origin": "local:sources/strategy-20260914/核验包-README-v4.2.2勘误3.txt",
+      "sha256": "7aefdfeab4d2d6ac27fd389de1c80cf8829a6913560f4a1adbbf504a5ce8bc3a"
+    },
+    {
+      "path": "sources/strategy-20260914/评测-剩余13词-1688拿货价.json",
+      "origin": "local:sources/strategy-20260914/评测-剩余13词-1688拿货价.json",
+      "sha256": "b57b3b01507d419c1463cc2a4bf854f7e8a0d736f9f518baa4fd71e9833500d1"
+    },
+    {
+      "path": "sources/strategy-20260914/评测批次1-剩余13词-淘宝侧.json",
+      "origin": "local:sources/strategy-20260914/评测批次1-剩余13词-淘宝侧.json",
+      "sha256": "df9ae58bc66e062ee96e16b27be5f068d3b0a32b53a1f30ec38a6b04d8a9156e"
+    },
+    {
+      "path": "sources/strategy-20260914/评测批次2-剩余13词-淘宝侧.json",
+      "origin": "local:sources/strategy-20260914/评测批次2-剩余13词-淘宝侧.json",
+      "sha256": "ee1ca1f43390750017d275956740a655f701b9ba8c08b911daa6fa234ceefad3"
+    },
+    {
+      "path": "sources/context/最终结论-传阅版-v4.2.2勘误3.txt",
+      "origin": "local:sources/context/最终结论-传阅版-v4.2.2勘误3.txt",
+      "sha256": "e00b85c6689db3a74ed05c57715cd4540f84ea304b5f8b29a71d848bee0b7bb7"
+    },
+    {
+      "path": "sources/obsidian/选品思路修正-三条腿框架-2026-09-13.md",
+      "origin": "local:sources/obsidian/选品思路修正-三条腿框架-2026-09-13.md",
+      "sha256": "c8f1f04e4835f3cad61417409126123cc8c1f09fcb97013188ea84cc80a74b35"
+    },
+    {
+      "path": "sources/obsidian/一世芳华-动销与选图系列.md",
+      "origin": "local:sources/obsidian/一世芳华-动销与选图系列.md",
+      "sha256": "835447de4488cedd1082e33186cf47bb22761c6d29851d08b028166cf9c66d7a"
+    },
+    {
+      "path": "sources/obsidian/内容策略-三视频模型.md",
+      "origin": "local:sources/obsidian/内容策略-三视频模型.md",
+      "sha256": "69518190171e783e470e1bdc82480bd175161400ec23489eb3cc7e900082cd89"
+    },
+    {
+      "path": "sources/pm-v1.3-proposal.txt",
+      "origin": "local:sources/pm-v1.3-proposal.txt",
+      "sha256": "8e289a321310cbd2069e4650a5dc91a08cd87606f5828ad27e9241f64c26274d"
+    },
+    {
+      "path": "sources/reference-methods/1688素材整理-SKILL.md",
+      "origin": "local:sources/reference-methods/1688素材整理-SKILL.md",
+      "sha256": "e992cb898b3e1653838b845b3d9860f3caca7971a21e6937f1a9fdaf5d7350ad"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/CHANGELOG.md",
+      "origin": "local:sources/pm-decision-os-v1.2/CHANGELOG.md",
+      "sha256": "378f8585d8cb6a450659dad5ef9513d6fa6a2aa42ef0dafa5ee77ad3b489773d"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/README.md",
+      "origin": "local:sources/pm-decision-os-v1.2/README.md",
+      "sha256": "c2f35af50811ce173d680a6584e5ef5c5cc09845b22f3108d2ec35bf8613d1a1"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/SKILL.md",
+      "origin": "local:sources/pm-decision-os-v1.2/SKILL.md",
+      "sha256": "b482ec7992b6eb6ac2159cb4f77d685d69a7bbcc49486d68f3acf7982ccd83e7"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/competition-risk.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/competition-risk.md",
+      "sha256": "b2ff428a7302ee43aee8c485e8956de9eacefa6ee8a7b9244ab5332b9d813187"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/ecommerce-selection.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/ecommerce-selection.md",
+      "sha256": "49603d996ebd3a6d81231821046af578ae29bf7ec0a02ced623f532314c5f590"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/jtbd.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/jtbd.md",
+      "sha256": "b7d37976cb564aee46d72b04f348c54c8c02c99c9ebc15b4228af04bad785f19"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/keyword-demand.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/keyword-demand.md",
+      "sha256": "e1283eaf7a17fe488236e1b2611fd49c535210c4a913d2c44bb1f38e5d0e888f"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/metrics.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/metrics.md",
+      "sha256": "7145f16cf0b702cfc87575eef1ba9eaf6d04290c2481ad2afba5901aa5bf9d00"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/prd-review.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/prd-review.md",
+      "sha256": "9d1336c66c381877cdae086a819d16f88478a56fbb305d70110d1fc0e81c18f1"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/prioritization.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/prioritization.md",
+      "sha256": "7433e402be92b9c3f4450e0753d855601300a05cf39978067836245e1a29e430"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/problem-discovery.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/problem-discovery.md",
+      "sha256": "343313c3c9a7db3e4524aa5f55e25f25cabff1ee248c67f4810029fbe0a5bc91"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/scoring-governance.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/scoring-governance.md",
+      "sha256": "04eec60eb4b329894c1b46c21c1fc1437f6166a25dd0d4180981bf8a9000447d"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/supply-inventory-risk.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/supply-inventory-risk.md",
+      "sha256": "6e5dcba7c7756d4c85c804c3f249507e63613443f16669cf365fbd744dad4871"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/survival-mode.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/survival-mode.md",
+      "sha256": "3999d203469741e528cd4cef89149d3a2e4d3568e5bc0dac0f7ca4040908a0b8"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/unit-economics-ecommerce.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/unit-economics-ecommerce.md",
+      "sha256": "c80cb4649f1bc468331821ac92ea451bd98982312588f2bfa0a2f16f06633d88"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/references/validation.md",
+      "origin": "local:sources/pm-decision-os-v1.2/references/validation.md",
+      "sha256": "0072258b8a891cffaaa61d80d1d6e2aee84ebadd7a6a2e2cc02e61d515e31c70"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/decision-report.md",
+      "origin": "local:sources/pm-decision-os-v1.2/templates/decision-report.md",
+      "sha256": "24145c5ad88fe482ef44234ebcf1c69695f0159e0df4a0b4662dcd46e59f4ffd"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/ecommerce-selection-report.md",
+      "origin": "local:sources/pm-decision-os-v1.2/templates/ecommerce-selection-report.md",
+      "sha256": "9c0b9228f392daaaa367b2ca4b077ed620fde56323a4cdf73aad151318326b45"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/experiment-card.md",
+      "origin": "local:sources/pm-decision-os-v1.2/templates/experiment-card.md",
+      "sha256": "ec1ad58b8948eee5fa6e0f1a5ff811f4768aeb617a60af368fb3fff6f3f7caaf"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/product-audit.md",
+      "origin": "local:sources/pm-decision-os-v1.2/templates/product-audit.md",
+      "sha256": "f37538c5934085d703a3aee80b8c7ffcf9e16adb8999c6630bf65bbcbd6cfc05"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/scoring-model-audit.md",
+      "origin": "local:sources/pm-decision-os-v1.2/templates/scoring-model-audit.md",
+      "sha256": "ff4c68eb7ff6a969fae97591bdc186be7e83f63ca1b1e37c95dd82eccbe08a7d"
+    },
+    {
+      "path": "sources/pm-decision-os-v1.2/templates/small-bet-test.md",
+      "origin": "local:sources/pm-decision-os-v1.2/templates/small-bet-test.md",
+      "sha256": "e52dc1797698cffa773c55477d65eeb842dc0261034491cbf26bacd5124e5692"
+    }
+  ]
+}

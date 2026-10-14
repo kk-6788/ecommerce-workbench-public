@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1>上架与启动</h1>
+  <p class="muted">平台资料、启动任务、发布方案和执行结果。外部动作先看具体方案确认。</p>
+</section>
+
+<section class="card">
+  <h2>🚀 发布方案（{{ launch_plans|length }}）</h2>
+  <table class="table">
+    <thead><tr><th>商品</th><th>动作</th><th>状态</th><th>费用上限</th><th>创建</th></tr></thead>
+    <tbody>
+    {% for p in launch_plans %}
+      <tr>
+        <td>{{ p.product_title or p.product_id[:8] }}</td>
+        <td>{{ p.action }}</td>
+        <td><span class="tag {{ 'tag-ok' if p.state == 'READY' else 'tag-warn' if p.state in ['DRAFT','WAITING_APPROVAL'] else 'tag-muted' }}">{{ p.state }}</span></td>
+        <td>{{ p.currency }} {{ p.cost_cap_minor / 100 if p.cost_cap_minor is not none else '未设' }}</td>
+        <td class="muted">{{ p.created_at[:16] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if not launch_plans %}<p class="muted empty">暂无发布方案。上架/改价/视频发布先形成具体方案再确认。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>📌 已上架（{{ listings|length }}）</h2>
+  <table class="table">
+    <thead><tr><th>商品</th><th>平台</th><th>账号</th><th>外部ID</th><th>版本</th></tr></thead>
+    <tbody>
+    {% for l in listings %}
+      <tr><td>{{ l.product_title or l.product_id[:8] }}</td><td>{{ l.platform }}</td>
+          <td>{{ l.account_id }}</td><td class="muted">{{ l.external_id }}</td>
+          <td>v{{ l.revision }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if not listings %}<p class="muted empty">暂无上架记录。</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>⚙️ 执行回执（{{ attempts|length }}）</h2>
+  <table class="table">
+    <thead><tr><th>计划</th><th>状态</th><th>提供方请求ID</th><th>提交</th></tr></thead>
+    <tbody>
+    {% for a in attempts %}
+      <tr>
+        <td class="muted">{{ a.plan_id[:8] }}</td>
+        <td><span class="tag {{ 'tag-ok' if a.state == 'SUCCEEDED' else 'tag-warn' if a.state == 'UNKNOWN' else 'tag-muted' }}">{{ a.state }}</span></td>
+        <td class="muted">{{ a.provider_request_id or '—' }}</td>
+        <td class="muted">{{ ((a.submitted_at or a.prepared_at) or '')[:16] or '待提交' }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if not attempts %}<p class="muted empty">暂无执行记录。</p>{% endif %}
+</section>
+{% endblock %}
